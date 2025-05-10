@@ -1,0 +1,74 @@
+<!-- Movies Page (movie.component.html) -->
+<div class="min-h-screen bg-white dark:bg-gray-900 text-gray-300 p-5">
+  <!-- Banner Section (Auto Scroll) -->
+  <div class="relative h-96">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="flex w-full h-full animate-marquee">
+        <img ngSrc="https://img.freepik.com/free-vector/realistic-horizontal-cinema-movie-time-poster-with-3d-glasses-snacks-tickets-clapper-reel-blue-background-with-bokeh-vector-illustration_1284-77013.jpg?t=st=1746899845~exp=1746903445~hmac=32b54e21b1c70cd714f567ad1bf36bccdb457cfcdf0fb5cae3b956925c181978&w=1380" alt="Banner 1" class="w-full h-full object-cover" fill>
+        <img ngSrc="https://img.freepik.com/free-vector/realistic-social-media-cover-template-movie-premiere-event_23-2149508658.jpg?t=st=1746899939~exp=1746903539~hmac=64c89d2543c594b7582db3f53cdb3799bd8d54db82aacb85cfa3a06e355b7e9b&w=1380" alt="Banner 2" class="w-full h-full object-cover" fill>
+        <img ngSrc="https://img.freepik.com/free-vector/realistic-horizontal-cinema-movie-time-poster-with-3d-glasses-snacks-tickets-clapper-reel-blue-background-with-bokeh-vector-illustration_1284-77013.jpg?t=st=1746899845~exp=1746903445~hmac=32b54e21b1c70cd714f567ad1bf36bccdb457cfcdf0fb5cae3b956925c181978&w=1380" alt="Banner 3" class="w-full h-full object-cover" fill>
+        <!-- Add more banners as needed -->
+      </div>
+    </div>
+    <div class="absolute top-0 left-0 right-0 text-center pt-4">
+      <button class="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-400">
+        Search Movies
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Layout: Flex Container -->
+  <div class="flex gap-6 pt-8">
+    <!-- Filter Section (Left) -->
+    <div class="w-1/4 bg-gray-700 p-4 rounded-lg shadow-md">
+      <h2 class="text-xl font-bold text-white mb-4">Filters</h2>
+      <form>
+        <div class="mb-4">
+          <label for="genre" class="block text-sm text-gray-300">Genre</label>
+          <select id="genre" class="w-full p-2 rounded bg-gray-600 text-gray-300">
+            <option>Action</option>
+            <option>Drama</option>
+            <option>Comedy</option>
+            <option>Thriller</option>
+            <!-- Add more genres -->
+          </select>
+        </div>
+        <div class="mb-4">
+          <label for="rating" class="block text-sm text-gray-300">Rating</label>
+          <select id="rating" class="w-full p-2 rounded bg-gray-600 text-gray-300">
+            <option>All Ratings</option>
+            <option>G</option>
+            <option>PG</option>
+            <option>R</option>
+            <!-- Add more ratings -->
+          </select>
+        </div>
+        <div class="mb-4">
+          <label for="year" class="block text-sm text-gray-300">Year</label>
+          <select id="year" class="w-full p-2 rounded bg-gray-600 text-gray-300">
+            <option>2021</option>
+            <option>2022</option>
+            <option>2023</option>
+            <!-- Add more years -->
+          </select>
+        </div>
+      </form>
+    </div>
+
+    <!-- Movies Display Section (Right) -->
+    <div class="w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Movie Card (Repeat for each movie) -->
+      <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden">
+        <img src="movie1.jpg" alt="Movie 1" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold text-white">Movie Title</h3>
+          <p class="text-sm text-gray-400">Description of the movie</p>
+          <button class="mt-4 bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-400">
+            Watch Now
+          </button>
+        </div>
+      </div>
+      <!-- Add more movie cards as needed -->
+    </div>
+  </div>
+</div>
