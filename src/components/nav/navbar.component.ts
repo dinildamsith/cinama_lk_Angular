@@ -35,9 +35,17 @@ export class NavbarComponent {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
+  constructor() {
+    // Check localStorage for dark mode preference
+    const darkModePreference = localStorage.getItem('darkMode');
+    this.darkMode = darkModePreference === 'true';
+    document.documentElement.classList.toggle('dark', this.darkMode);
+  }
+
   toggleTheme() {
     this.darkMode = !this.darkMode;
     document.documentElement.classList.toggle('dark', this.darkMode);
+    localStorage.setItem('darkMode', this.darkMode ? 'true' : 'false');
   }
 
   protected readonly faUser = faUser;
