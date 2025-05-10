@@ -1,74 +1,115 @@
-<!-- Movies Page (movie.component.html) -->
 <div class="min-h-screen bg-white dark:bg-gray-900 text-gray-300 p-5">
   <!-- Banner Section (Auto Scroll) -->
-  <div class="relative h-96">
-    <div class="absolute inset-0 overflow-hidden">
-      <div class="flex w-full h-full animate-marquee">
-        <img ngSrc="https://img.freepik.com/free-vector/realistic-horizontal-cinema-movie-time-poster-with-3d-glasses-snacks-tickets-clapper-reel-blue-background-with-bokeh-vector-illustration_1284-77013.jpg?t=st=1746899845~exp=1746903445~hmac=32b54e21b1c70cd714f567ad1bf36bccdb457cfcdf0fb5cae3b956925c181978&w=1380" alt="Banner 1" class="w-full h-full object-cover" fill>
-        <img ngSrc="https://img.freepik.com/free-vector/realistic-social-media-cover-template-movie-premiere-event_23-2149508658.jpg?t=st=1746899939~exp=1746903539~hmac=64c89d2543c594b7582db3f53cdb3799bd8d54db82aacb85cfa3a06e355b7e9b&w=1380" alt="Banner 2" class="w-full h-full object-cover" fill>
-        <img ngSrc="https://img.freepik.com/free-vector/realistic-horizontal-cinema-movie-time-poster-with-3d-glasses-snacks-tickets-clapper-reel-blue-background-with-bokeh-vector-illustration_1284-77013.jpg?t=st=1746899845~exp=1746903445~hmac=32b54e21b1c70cd714f567ad1bf36bccdb457cfcdf0fb5cae3b956925c181978&w=1380" alt="Banner 3" class="w-full h-full object-cover" fill>
-        <!-- Add more banners as needed -->
-      </div>
-    </div>
-    <div class="absolute top-0 left-0 right-0 text-center pt-4">
-      <button class="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-400">
-        Search Movies
-      </button>
+  <div class="relative h-72 overflow-hidden rounded-lg mb-6">
+    <div class="flex w-[300%] h-full animate-marquee space-x-4">
+      <img ngSrc="https://img.freepik.com/free-vector/realistic-horizontal-cinema-movie-time-poster-with-3d-glasses-snacks-tickets-clapper-reel-blue-background-with-bokeh-vector-illustration_1284-77013.jpg" alt="Banner 1" class="w-full h-full object-cover rounded-lg"
+           fill>
+      <img ngSrc="https://img.freepik.com/free-vector/realistic-social-media-cover-template-movie-premiere-event_23-2149508658.jpg" alt="Banner 2" class="w-full h-full object-cover rounded-lg"
+           fill>
+      <img ngSrc="https://img.freepik.com/free-vector/realistic-horizontal-cinema-movie-time-poster-with-3d-glasses-snacks-tickets-clapper-reel-blue-background-with-bokeh-vector-illustration_1284-77013.jpg" alt="Banner 3" class="w-full h-full object-cover rounded-lg"
+           fill>
     </div>
   </div>
 
-  <!-- Main Layout: Flex Container -->
-  <div class="flex gap-6 pt-8">
-    <!-- Filter Section (Left) -->
-    <div class="w-1/4 bg-gray-700 p-4 rounded-lg shadow-md">
-      <h2 class="text-xl font-bold text-white mb-4">Filters</h2>
+  <!-- Main Layout -->
+  <div class="flex flex-wrap gap-6">
+    <!-- Filter Section -->
+    <div class="w-full md:w-1/4 bg-[#ccd9dd] dark:bg-gray-800 p-4 rounded-lg shadow-md">
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Filters</h2>
       <form>
         <div class="mb-4">
-          <label for="genre" class="block text-sm text-gray-300">Genre</label>
-          <select id="genre" class="w-full p-2 rounded bg-gray-600 text-gray-300">
+          <label for="genre" class="block text-sm text-gray-700 dark:text-gray-300">Genre</label>
+          <select id="genre" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
             <option>Action</option>
             <option>Drama</option>
             <option>Comedy</option>
             <option>Thriller</option>
-            <!-- Add more genres -->
           </select>
         </div>
+
         <div class="mb-4">
-          <label for="rating" class="block text-sm text-gray-300">Rating</label>
-          <select id="rating" class="w-full p-2 rounded bg-gray-600 text-gray-300">
+          <label for="rating" class="block text-sm text-gray-700 dark:text-gray-300">Rating</label>
+          <select id="rating" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
             <option>All Ratings</option>
             <option>G</option>
             <option>PG</option>
             <option>R</option>
-            <!-- Add more ratings -->
           </select>
         </div>
+
         <div class="mb-4">
-          <label for="year" class="block text-sm text-gray-300">Year</label>
-          <select id="year" class="w-full p-2 rounded bg-gray-600 text-gray-300">
-            <option>2021</option>
-            <option>2022</option>
+          <label for="year" class="block text-sm text-gray-700 dark:text-gray-300">Year</label>
+          <select id="year" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
             <option>2023</option>
-            <!-- Add more years -->
+            <option>2022</option>
+            <option>2021</option>
           </select>
         </div>
       </form>
     </div>
 
-    <!-- Movies Display Section (Right) -->
-    <div class="w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      <!-- Movie Card (Repeat for each movie) -->
-      <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden">
-        <img src="movie1.jpg" alt="Movie 1" class="w-full h-48 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-semibold text-white">Movie Title</h3>
-          <p class="text-sm text-gray-400">Description of the movie</p>
-          <button class="mt-4 bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-400">
-            Watch Now
-          </button>
+
+    <!-- Movie Cards Section -->
+    <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+      <div *ngFor="let movie of movies" class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+        <a href="#">
+          <img class="rounded-t-lg" [src]="movie.image" alt="product image" />
+        </a>
+        <div class="px-2 pb-1">
+          <a href="#">
+            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{movie.title}}</h5>
+          </a>
+          <div class="flex items-center mt-2.5 mb-5">
+            <div class="flex items-center space-x-1 rtl:space-x-reverse">
+              <ng-container *ngFor="let star of [1,2,3,4,5]; let i = index">
+                <svg
+                  *ngIf="i < movie.rating"
+                  class="w-4 h-4 text-yellow-300"
+                  fill="currentColor"
+                  viewBox="0 0 22 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534
+                   1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535
+                   1.535 0 0 0 1.463 9.2l3.656 3.563-.863
+                   5.031a1.532 1.532 0 0 0 2.226
+                   1.616L11 17.033l4.518
+                   2.375a1.534 1.534 0 0 0
+                   2.226-1.617l-.863-5.03L20.537
+                   9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                  />
+                </svg>
+                <svg
+                  *ngIf="i >= movie.rating"
+                  class="w-4 h-4 text-gray-200 dark:text-gray-600"
+                  fill="currentColor"
+                  viewBox="0 0 22 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534
+                   1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535
+                   1.535 0 0 0 1.463 9.2l3.656 3.563-.863
+                   5.031a1.532 1.532 0 0 0 2.226
+                   1.616L11 17.033l4.518
+                   2.375a1.534 1.534 0 0 0
+                   2.226-1.617l-.863-5.03L20.537
+                   9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                  />
+                </svg>
+              </ng-container>
+            </div>
+            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-3">
+            {{ movie.rating.toFixed(1) }}
+            </span>
+
+            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-3">18+</span>
+          </div>
         </div>
       </div>
-      <!-- Add more movie cards as needed -->
     </div>
+
   </div>
 </div>
