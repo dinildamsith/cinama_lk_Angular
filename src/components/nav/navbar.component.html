@@ -1,0 +1,37 @@
+<nav class="fixed top-4 left-4 right-4 rounded-xl bg-white dark:bg-gray-800 shadow-md z-50 px-6 py-3">
+  <div class="flex justify-between items-center">
+    <!-- Brand -->
+    <div class="text-xl font-bold text-gray-800 dark:text-white">Cinema.LK</div>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex gap-6 items-center text-gray-700 dark:text-gray-200">
+      <a *ngFor="let item of navItems"
+         [routerLink]="item.path"
+         routerLinkActive="text-blue-500"
+         class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition">
+        {{ item.name }}
+      </a>
+      <button (click)="toggleTheme()" class="p-2 rounded bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-white">
+        <fa-icon [icon]="darkMode ? faSun : faMoon"></fa-icon>
+      </button>
+    </div>
+
+    <!-- Mobile Hamburger -->
+    <div class="md:hidden">
+      <button (click)="toggleMenu()" class="text-gray-800 dark:text-white focus:outline-none">
+        &#9776;
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div *ngIf="isMenuOpen" class="md:hidden mt-4 flex flex-col gap-4 text-gray-700 dark:text-gray-200">
+    <a href="#" class="hover:text-blue-500">Home</a>
+    <a href="#" class="hover:text-blue-500">Movies</a>
+    <a href="#" class="hover:text-blue-500">Trending</a>
+    <a href="#" class="hover:text-blue-500">Add</a>
+    <button (click)="toggleTheme()" class="px-2 py-1 rounded bg-gray-200 dark:bg-gray-600">
+      {{ darkMode ? 'Light' : 'Dark' }}
+    </button>
+  </div>
+</nav>
