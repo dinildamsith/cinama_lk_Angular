@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
+import {MovieCardComponent} from '../../components/movieCard/movie-card.component';
 
 @Component({
   selector: 'app-movie',
@@ -7,7 +8,8 @@ import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
   imports: [
     NgOptimizedImage,
     NgForOf,
-    NgIf
+    NgIf,
+    MovieCardComponent
   ],
   standalone: true
 })
