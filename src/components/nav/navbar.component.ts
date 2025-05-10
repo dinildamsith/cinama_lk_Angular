@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {RouterLink, RouterLinkActive} from '@angular/router';
-import {NgForOf} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
+import {faUser} from '@fortawesome/free-solid-svg-icons/faUser';
 
 @Component({
   selector: 'app-navbar',
@@ -11,17 +12,17 @@ import {NgForOf} from '@angular/common';
     FaIconComponent,
     RouterLink,
     RouterLinkActive,
-    NgForOf
+    NgForOf,
+    NgIf
   ],
   standalone: true
 })
 export class NavbarComponent {
 
   navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Services', path: '/services' },
-    { name: 'Contact', path: '/contact' }
+    { name: 'Movies', path: '/' },
+    { name: 'Tv Shows', path: '/tv-shows' },
+    { name: 'People', path: '/people' }
   ]
 
   isMenuOpen = false;
@@ -38,4 +39,6 @@ export class NavbarComponent {
     this.darkMode = !this.darkMode;
     document.documentElement.classList.toggle('dark', this.darkMode);
   }
+
+  protected readonly faUser = faUser;
 }

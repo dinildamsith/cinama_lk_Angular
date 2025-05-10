@@ -11,6 +11,9 @@
          class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition">
         {{ item.name }}
       </a>
+      <button class="p-2 rounded bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-white">
+        <fa-icon [icon]="faUser"></fa-icon>
+      </button>
       <button (click)="toggleTheme()" class="p-2 rounded bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-white">
         <fa-icon [icon]="darkMode ? faSun : faMoon"></fa-icon>
       </button>
@@ -26,12 +29,17 @@
 
   <!-- Mobile Menu -->
   <div *ngIf="isMenuOpen" class="md:hidden mt-4 flex flex-col gap-4 text-gray-700 dark:text-gray-200">
-    <a href="#" class="hover:text-blue-500">Home</a>
-    <a href="#" class="hover:text-blue-500">Movies</a>
-    <a href="#" class="hover:text-blue-500">Trending</a>
-    <a href="#" class="hover:text-blue-500">Add</a>
-    <button (click)="toggleTheme()" class="px-2 py-1 rounded bg-gray-200 dark:bg-gray-600">
-      {{ darkMode ? 'Light' : 'Dark' }}
+    <a *ngFor="let item of navItems"
+       [routerLink]="item.path"
+       routerLinkActive="text-blue-500"
+       class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition">
+      {{ item.name }}
+    </a>
+    <button class="p-2 rounded bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-white">
+      <fa-icon [icon]="faUser"></fa-icon>
+    </button>
+    <button (click)="toggleTheme()" class="p-2 rounded bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-white">
+      <fa-icon [icon]="darkMode ? faSun : faMoon"></fa-icon>
     </button>
   </div>
 </nav>
