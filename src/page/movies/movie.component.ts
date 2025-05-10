@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
 import {MovieCardComponent} from '../../components/movieCard/movie-card.component';
 
@@ -14,7 +14,21 @@ import {MovieCardComponent} from '../../components/movieCard/movie-card.componen
   standalone: true
 })
 
-export class MovieComponent {
+export class MovieComponent implements OnInit {
+
+  banners: string[] = [
+    'assets/baner-1.jpg',
+    'assets/baner-2.jpg',
+    'assets/baner-3.jpg',
+  ];
+
+  currentBannerIndex = 0;
+
+  ngOnInit(): void {
+    setInterval(() => {
+      this.currentBannerIndex = (this.currentBannerIndex + 1) % this.banners.length;
+    }, 3000); // Change every 3 seconds
+  }
 
   movies = [
     {

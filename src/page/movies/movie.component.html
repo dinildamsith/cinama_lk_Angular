@@ -1,14 +1,23 @@
 <div class="min-h-screen bg-white dark:bg-gray-900 text-gray-300 p-5">
   <!-- Banner Section (Auto Scroll) -->
   <div class="relative h-72 overflow-hidden rounded-lg mb-6">
-    <div class="flex w-[300%] h-full animate-marquee space-x-4">
-      <img ngSrc="https://img.freepik.com/free-vector/realistic-horizontal-cinema-movie-time-poster-with-3d-glasses-snacks-tickets-clapper-reel-blue-background-with-bokeh-vector-illustration_1284-77013.jpg" alt="Banner 1" class="w-full h-full object-cover rounded-lg"
-           fill>
-      <img ngSrc="https://img.freepik.com/free-vector/realistic-social-media-cover-template-movie-premiere-event_23-2149508658.jpg" alt="Banner 2" class="w-full h-full object-cover rounded-lg"
-           fill>
-      <img ngSrc="https://img.freepik.com/free-vector/realistic-horizontal-cinema-movie-time-poster-with-3d-glasses-snacks-tickets-clapper-reel-blue-background-with-bokeh-vector-illustration_1284-77013.jpg" alt="Banner 3" class="w-full h-full object-cover rounded-lg"
-           fill>
+<!--    <div class="relative h-72 overflow-hidden rounded-lg mb-6">-->
+<!--      <div class="flex animate-marquee w-[300%] h-full space-x-4">-->
+<!--        <img src="assets/baner-1.jpg" alt="Banner 1" class="w-full h-full object-cover rounded-lg">-->
+<!--        <img src="assets/baner-2.jpg" alt="Banner 1" class="w-full h-full object-cover rounded-lg">-->
+<!--        <img src="assets/baner-3.jpg" alt="Banner 1" class="w-full h-full object-cover rounded-lg">-->
+<!--      </div>-->
+<!--    </div>-->
+    <div class="relative h-72 overflow-hidden rounded-lg mb-6">
+      <img
+        *ngFor="let banner of banners; let i = index"
+        [src]="banner"
+        [alt]="'Banner ' + (i + 1)"
+        [class.hidden]="i !== currentBannerIndex"
+        class="w-full h-full object-cover rounded-lg transition-opacity duration-700"
+      />
     </div>
+
   </div>
 
   <!-- Main Layout -->
