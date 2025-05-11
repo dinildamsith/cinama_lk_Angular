@@ -1,0 +1,65 @@
+<div class="min-h-screen bg-white dark:bg-gray-900 text-gray-300 p-5">
+  <!-- Banner Section (Auto Scroll) -->
+  <div class="relative h-72 overflow-hidden rounded-lg mb-6">
+    <div class="relative h-72 overflow-hidden rounded-lg mb-6">
+      <img
+        *ngFor="let banner of banners; let i = index"
+        [src]="banner"
+        [alt]="'Banner ' + (i + 1)"
+        [class.hidden]="i !== currentBannerIndex"
+        class="w-full h-full object-cover rounded-lg transition-opacity duration-700"
+      />
+    </div>
+
+  </div>
+
+  <!-- Main Layout -->
+  <div class="flex flex-wrap gap-6">
+    <!-- Filter Section -->
+    <div class="w-full md:w-1/4 bg-[#ccd9dd] dark:bg-gray-800 p-4 rounded-lg shadow-md">
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Filters</h2>
+      <form>
+        <div class="mb-4">
+          <label for="genre" class="block text-sm text-gray-700 dark:text-gray-300">Genre</label>
+          <select id="genre" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
+            <option>Action</option>
+            <option>Drama</option>
+            <option>Comedy</option>
+            <option>Thriller</option>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label for="rating" class="block text-sm text-gray-700 dark:text-gray-300">Rating</label>
+          <select id="rating" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
+            <option>All Ratings</option>
+            <option>G</option>
+            <option>PG</option>
+            <option>R</option>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label for="year" class="block text-sm text-gray-700 dark:text-gray-300">Year</label>
+          <select id="year" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
+            <option>2023</option>
+            <option>2022</option>
+            <option>2021</option>
+          </select>
+        </div>
+      </form>
+    </div>
+
+
+    <!-- Movie Cards Section -->
+    <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <app-movie-card
+        *ngFor="let movie of movies"
+        [image]="movie.image"
+        [title]="movie.title"
+        [rating]="movie.rating"
+       />
+    </div>
+
+  </div>
+</div>
