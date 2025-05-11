@@ -7,10 +7,7 @@ import {TvShowsCardComponent} from '../../components/tvShowsCard/tvShows-card.co
   selector: 'app-tv-shows',
   templateUrl: './tvShows.component.html',
   imports: [
-    NgOptimizedImage,
     NgForOf,
-    NgIf,
-    MovieCardComponent,
     TvShowsCardComponent
   ],
   standalone: true

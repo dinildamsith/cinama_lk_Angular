@@ -7,10 +7,7 @@ import {PeopleCardComponent} from '../../components/peopleCard/people-card.compo
   selector: 'app-people',
   templateUrl: './people.component.html',
   imports: [
-    NgOptimizedImage,
     NgForOf,
-    NgIf,
-    MovieCardComponent,
     PeopleCardComponent
   ],
   standalone: true

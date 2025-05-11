@@ -6,10 +6,7 @@ import {NgForOf, NgIf} from '@angular/common';
   selector: 'app-people-card',
   templateUrl: './people-card.component.html',
   standalone: true,
-  imports: [
-    NgForOf,
-    NgIf
-  ],
+  imports: [],
 })
 export class PeopleCardComponent {
   @Input() image: string = '';

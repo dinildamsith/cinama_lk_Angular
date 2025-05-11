@@ -6,9 +6,7 @@ import {MovieCardComponent} from '../../components/movieCard/movie-card.componen
   selector: 'app-movie',
   templateUrl: './movie.component.html',
   imports: [
-    NgOptimizedImage,
     NgForOf,
-    NgIf,
     MovieCardComponent
   ],
   standalone: true
