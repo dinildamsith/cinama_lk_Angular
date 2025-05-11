@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
 import {MovieCardComponent} from '../../components/movieCard/movie-card.component';
+import {TvShowsCardComponent} from '../../components/tvShowsCard/tvShows-card.component';
 
 @Component({
   selector: 'app-tv-shows',
@@ -9,7 +10,8 @@ import {MovieCardComponent} from '../../components/movieCard/movie-card.componen
     NgOptimizedImage,
     NgForOf,
     NgIf,
-    MovieCardComponent
+    MovieCardComponent,
+    TvShowsCardComponent
   ],
   standalone: true
 })

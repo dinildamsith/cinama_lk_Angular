@@ -3,11 +3,11 @@
   <!-- Main Layout -->
   <div class="flex flex-wrap gap-6">
     <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      <app-movie-card
-        *ngFor="let movie of movies"
-        [image]="movie.image"
-        [title]="movie.title"
-        [rating]="movie.rating"
+      <app-people-card
+        *ngFor="let people of peoples"
+        [image]="people.image"
+        [name]="people.name"
+        [title]="people.title"
        />
     </div>
   </div>

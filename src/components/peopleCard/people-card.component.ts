@@ -3,16 +3,17 @@ import { Component, Input } from '@angular/core';
 import {NgForOf, NgIf} from '@angular/common';
 
 @Component({
-  selector: 'app-movie-card',
-  templateUrl: './movie-card.component.html',
+  selector: 'app-people-card',
+  templateUrl: './people-card.component.html',
   standalone: true,
   imports: [
     NgForOf,
     NgIf
   ],
 })
-export class MovieCardComponent {
-  @Input() title: string = '';
+export class PeopleCardComponent {
   @Input() image: string = '';
-  @Input() rating: number = 0;
+  @Input() name: string = '';
+  @Input() id: number = 0;
+  @Input() title: string = '';
 }

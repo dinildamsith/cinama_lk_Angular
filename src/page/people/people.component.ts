@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
 import {MovieCardComponent} from '../../components/movieCard/movie-card.component';
+import {PeopleCardComponent} from '../../components/peopleCard/people-card.component';
 
 @Component({
   selector: 'app-people',
@@ -9,53 +10,34 @@ import {MovieCardComponent} from '../../components/movieCard/movie-card.componen
     NgOptimizedImage,
     NgForOf,
     NgIf,
-    MovieCardComponent
+    MovieCardComponent,
+    PeopleCardComponent
   ],
   standalone: true
 })
 
 export class PeopleComponent{
 
-  movies = [
-    {
-      title: 'The Shawshank Redemption',
-      year: 1994,
-      image: 'https://i5.walmartimages.com/seo/Avengers-Infinity-War-Movie-Poster-Print-Regular-Style-Size-24-X-36_65e23347-2ccc-4581-9700-581e0ea9c3a8.a808f8889bfa9e368659fbefc5e5dda4.jpeg',
-      rating: 9.3,
-      adult: false,
-    },
-    {
-      title: 'The Shawshank Redemption',
-      year: 1994,
-      image: 'https://i5.walmartimages.com/seo/Avengers-Infinity-War-Movie-Poster-Print-Regular-Style-Size-24-X-36_65e23347-2ccc-4581-9700-581e0ea9c3a8.a808f8889bfa9e368659fbefc5e5dda4.jpeg',
-      rating: 9.3,
-      adult: false,
-    }
-    ,
-    {
-      title: 'The Shawshank Redemption',
-      year: 1994,
-      image: 'https://i5.walmartimages.com/seo/Avengers-Infinity-War-Movie-Poster-Print-Regular-Style-Size-24-X-36_65e23347-2ccc-4581-9700-581e0ea9c3a8.a808f8889bfa9e368659fbefc5e5dda4.jpeg',
-      rating: 1.3,
-      adult: false,
-    },
-    {
-      title: 'The Shawshank Redemption',
-      year: 1994,
-      image: 'https://i5.walmartimages.com/seo/Avengers-Infinity-War-Movie-Poster-Print-Regular-Style-Size-24-X-36_65e23347-2ccc-4581-9700-581e0ea9c3a8.a808f8889bfa9e368659fbefc5e5dda4.jpeg',
-      rating: 3.3,
-      adult: false,
-    },
-    {
-      title: 'The Shawshank Redemption',
-      year: 1994,
-      image: 'https://i5.walmartimages.com/seo/Avengers-Infinity-War-Movie-Poster-Print-Regular-Style-Size-24-X-36_65e23347-2ccc-4581-9700-581e0ea9c3a8.a808f8889bfa9e368659fbefc5e5dda4.jpeg',
-      rating: 10,
-      adult: false,
-    }
-  ];
 
-  constructor() {
-  }
+  peoples = [
+    {
+      image: 'https://images.ntpl.org.uk/hppa-zooms/00000000696/cms_pcf_959529.bro',
+      name: 'John Doe',
+      title: 'Actor',
+      id: 1
+    },
+    {
+      image: 'https://images.ntpl.org.uk/hppa-zooms/00000000696/cms_pcf_959529.bro',
+      name: 'Jane Smith',
+      title: 'Director',
+      id: 2
+    },
+    {
+      image: 'https://images.ntpl.org.uk/hppa-zooms/00000000696/cms_pcf_959529.bro',
+      name: 'Alice Johnson',
+      title: 'Producer',
+      id: 3
+    }
+  ]
 
 }
