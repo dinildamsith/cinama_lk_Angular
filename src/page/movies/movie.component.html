@@ -27,6 +27,16 @@
       <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Filters</h2>
       <form>
         <div class="mb-4">
+          <label for="categories" class="block text-sm text-gray-700 dark:text-gray-300">Categories</label>
+          <select id="categories" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
+            <option>Popular</option>
+            <option>Now Playing</option>
+            <option>Upcoming</option>
+            <option>Top Rated</option>
+          </select>
+        </div>
+
+        <div class="mb-4">
           <label for="genre" class="block text-sm text-gray-700 dark:text-gray-300">Genre</label>
           <select id="genre" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
             <option>Action</option>
@@ -61,12 +71,20 @@
     <!-- Movie Cards Section -->
     <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
+      <!-- Show 'not found' image when movies array is empty -->
+      <div *ngIf="movies.length === 0" class="text-center">
+<!--        <img src="assets/not-found.png" alt="No movies found" width="200" />-->
+        <p>No movies found.</p>
+      </div>
+
+      <!-- Show movie cards when movies are available -->
       <app-movie-card
         *ngFor="let movie of movies"
         [image]="movie.image"
         [title]="movie.title"
-        [rating]="movie.rating"
-       />
+        [rating]="movie.rating">
+      </app-movie-card>
+
 
 
 <!--      <div *ngFor="let movie of movies" class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">-->
