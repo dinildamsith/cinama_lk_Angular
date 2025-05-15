@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
+import {Component, NgModule, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {CommonModule, NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
 import {MovieCardComponent} from '../../components/movieCard/movie-card.component';
 import {MovieServices} from '../../services/movie.services';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-movie',
@@ -9,11 +10,10 @@ import {MovieServices} from '../../services/movie.services';
   imports: [
     NgForOf,
     MovieCardComponent,
-    NgIf
+    NgIf,
   ],
   standalone: true
 })
-
 export class MovieComponent implements OnInit {
 
 
@@ -24,6 +24,13 @@ export class MovieComponent implements OnInit {
     'assets/baner-1.jpg',
     'assets/baner-2.jpg',
     'assets/baner-3.jpg',
+  ];
+
+  movieCategories = [
+    { key: 'popular', label: 'Popular' },
+    { key: 'now_playing', label: 'Now Playing' },
+    { key: 'upcoming', label: 'Upcoming' },
+    { key: 'top_rated', label: 'Top Rated' }
   ];
 
   // Array to hold now playing movies
@@ -56,5 +63,14 @@ export class MovieComponent implements OnInit {
       this.currentBannerIndex = (this.currentBannerIndex + 1) % this.banners.length;
     }, 3000); // Change every 3 seconds
   }
+
+
+  selectedCategory: string = ''
+  onCategoryChange(event: any) {
+    // Get the selected category from the event
+    this.selectedCategory = event.target.value;
+    console.log('Selected category:', this.selectedCategory);
+  }
+
 
 }

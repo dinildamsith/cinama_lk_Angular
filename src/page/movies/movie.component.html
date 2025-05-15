@@ -28,11 +28,10 @@
       <form>
         <div class="mb-4">
           <label for="categories" class="block text-sm text-gray-700 dark:text-gray-300">Categories</label>
-          <select id="categories" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
-            <option>Popular</option>
-            <option>Now Playing</option>
-            <option>Upcoming</option>
-            <option>Top Rated</option>
+          <select id="categories" (change)="onCategoryChange($event)" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
+            <option *ngFor="let category of movieCategories" [value]="category.key">
+              {{category.label}}
+            </option>
           </select>
         </div>
 
