@@ -33,6 +33,7 @@ export class MovieComponent implements OnInit {
     { key: 'top_rated', label: 'Top Rated' }
   ];
 
+  loading: boolean = false;
   // Array to hold now playing movies
   movies: any[] = [];
 
@@ -41,15 +42,24 @@ export class MovieComponent implements OnInit {
 
   // Function to fetch all now playing movies
   getAllNowPlayingMovies() {
-    this.movieServices.getAllNowPlayingMovies().subscribe((res:any) => {
-      console.log(res);
-      this.movies = res.results.map((movie: any) => ({
-        title: movie.title,
-        year: movie.release_date.split('-')[0],
-        image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-        rating: movie.vote_average,
-        adult: movie.adult,
-      }));
+    this.loading = true;
+
+    this.movieServices.getAllNowPlayingMovies().subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.movies = res.results.map((movie: any) => ({
+          title: movie.title,
+          year: movie.release_date.split('-')[0],
+          image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          rating: movie.vote_average,
+          adult: movie.adult,
+        }));
+        this.loading = false; // ✅ move here
+      },
+      error: (err) => {
+        console.error('Error fetching now playing movies:', err);
+        this.loading = false; // ✅ also handle failure
+      }
     });
   }
 
