@@ -20,6 +20,7 @@ export class MovieDetailsComponent implements OnInit{
 
   loading: boolean = false;
   movieDetails: any = {}
+  movieCredits: any = {}
 
 
   //------------selected movie get by id
@@ -38,11 +39,28 @@ export class MovieDetailsComponent implements OnInit{
     })
   }
 
+  //------------selected movie credits get by id
+  selectedMovieCreditsGet(movieId: any){
+    this.loading = true
+
+    this.movieService.getSelectedMovieCreditsGet(movieId).subscribe({
+      next : (res : any) => {
+        console.log(res)
+        this.movieCredits = res
+        this.loading = false
+      }, error: (err: any) => {
+        console.log(err)
+        this.loading = false
+      }
+    })
+  }
+
 
   ngOnInit(): void {
     const movieId = this.route.snapshot.paramMap.get('movieId');
     console.log(movieId)
     this.selectedMovieGet(movieId)
+    this.selectedMovieCreditsGet(movieId)
   }
 
 }

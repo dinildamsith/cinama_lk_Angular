@@ -92,30 +92,19 @@
   <!-- Credits -->
   <div class="px-4 md:px-20 py-4">
     <h2 class="text-xl font-semibold mb-4">Cast</h2>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+    <div class="flex overflow-x-auto gap-6 scroll-smooth pb-4">
 
       <!-- Cast Member Card -->
-      <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">
+      <div class="min-w-[250px]  bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4" *ngFor="let cast of movieCredits?.cast">
         <img
-          src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"
-          alt="Leonardo DiCaprio"
-          class="mx-auto  object-cover mb-3"
+          [src]="cast.profile_path ? 'https://image.tmdb.org/t/p/w500' + cast.profile_path : '/assets/not-ffound-image.jpg'"
+          alt="{{ cast.name }}"
+          class="mx-auto object-cover mb-3"
         />
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Leonardo DiCaprio</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300">as Cobb</p>
-      </div>
 
-      <!-- Cast Member Card -->
-      <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">
-        <img
-          src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"
-          alt="Leonardo DiCaprio"
-          class="mx-auto  object-cover mb-3"
-        />
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Leonardo DiCaprio</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300">as Cobb</p>
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">{{cast?.original_name}}</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-300">{{cast?.name}}</p>
       </div>
-
     </div>
   </div>
 
@@ -125,18 +114,6 @@
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
 
       <!-- Crew Member Card -->
-      <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">
-        <img
-          src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"
-          alt="Leonardo DiCaprio"
-          class="mx-auto  object-cover mb-3"
-        />
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Leonardo DiCaprio</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300">as Cobb</p>
-      </div>
-
-
-      <!-- Cast Member Card -->
       <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">
         <img
           src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"

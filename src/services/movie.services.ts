@@ -2,7 +2,7 @@ import {Injectable, OnInit} from '@angular/core';
 import {HttpService} from './http.service';
 import {
   NOW_PLAYING_ALL_MOVIES_GET_URL,
-  POPULAR_ALL_MOVIES_GET_URL, SELECTED_MOVIE_DETAILS_GET_URL,
+  POPULAR_ALL_MOVIES_GET_URL, SELECTED_MOVIE_CREDITS_GET_URL, SELECTED_MOVIE_DETAILS_GET_URL,
   TOP_RATED_ALL_MOVIES_GET_URL, UPCOMING_ALL_MOVIES_GET_URL
 } from './endpoint.list';
 
@@ -31,6 +31,10 @@ export class MovieServices{
 
   getSelectedMovieGet(movieId:any) {
     return this.httpServices.get(SELECTED_MOVIE_DETAILS_GET_URL + movieId + "?language=en-US", true)
+  }
+
+  getSelectedMovieCreditsGet(movieId:any) {
+    return this.httpServices.get(SELECTED_MOVIE_CREDITS_GET_URL + movieId + "/credits?language=en-US", true)
   }
 
 
