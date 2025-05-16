@@ -9,6 +9,6 @@ export const routes: Routes = [
   {path:'', component: MovieComponent},
   {path:'tv-shows', component: TvShowsComponent},
   {path:'people', component: PeopleComponent},
-  {path: 'movie-details', component: MovieDetailsComponent},
+  {path: 'movie-details/:movieId', component: MovieDetailsComponent},
   {path: 'tv-show-details', component: TvShowDetailsComponent}
 ];

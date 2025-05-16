@@ -48,6 +48,7 @@ export class MovieComponent implements OnInit {
       next: (res: any) => {
         console.log(res);
         this.movies = res.results.map((movie: any) => ({
+          id:movie.id,
           title: movie.title,
           year: movie.release_date.split('-')[0],
           image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
@@ -71,6 +72,7 @@ export class MovieComponent implements OnInit {
       next: (res: any) => {
         console.log(res);
         this.movies = res.results.map((movie: any) => ({
+          id:movie.id,
           title: movie.title,
           year: movie.release_date.split('-')[0],
           image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
@@ -94,6 +96,7 @@ export class MovieComponent implements OnInit {
       next: (res: any) => {
         console.log(res);
         this.movies = res.results.map((movie: any) => ({
+          id:movie.id,
           title: movie.title,
           year: movie.release_date.split('-')[0],
           image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
@@ -117,6 +120,7 @@ export class MovieComponent implements OnInit {
       next: (res: any) => {
         console.log(res);
         this.movies = res.results.map((movie: any) => ({
+          id:movie.id,
           title: movie.title,
           year: movie.release_date.split('-')[0],
           image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,

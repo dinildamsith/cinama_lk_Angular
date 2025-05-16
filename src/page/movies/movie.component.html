@@ -77,6 +77,7 @@
       <!-- Show movie cards when movies are available -->
       <app-movie-card
         *ngFor="let movie of movies"
+        [id]="movie.id"
         [image]="movie.image"
         [title]="movie.title"
         [rating]="movie.rating">
