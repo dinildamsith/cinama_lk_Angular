@@ -63,10 +63,33 @@ export class MovieComponent implements OnInit {
     });
   }
 
+  // Function to fetch popular movies
+  getPopularMovies() {
+    this.loading = true;
+
+    this.movieServices.getPopularMovies().subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.movies = res.results.map((movie: any) => ({
+          title: movie.title,
+          year: movie.release_date.split('-')[0],
+          image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          rating: movie.vote_average,
+          adult: movie.adult,
+        }));
+        this.loading = false; // ✅ move here
+      },
+      error: (err) => {
+        console.error('Error fetching popular movies:', err);
+        this.loading = false; // ✅ also handle failure
+      }
+    });
+  }
+
   ngOnInit(): void {
 
     // Fetch all now playing movies when the component initializes
-    this.getAllNowPlayingMovies();
+    this.getPopularMovies()
 
     // Start the banner rotation
     setInterval(() => {
@@ -79,7 +102,17 @@ export class MovieComponent implements OnInit {
   onCategoryChange(event: any) {
     // Get the selected category from the event
     this.selectedCategory = event.target.value;
-    console.log('Selected category:', this.selectedCategory);
+
+
+    if (this.selectedCategory === 'popular') {
+      this.getPopularMovies();
+    }
+
+    if (this.selectedCategory === 'now_playing') {
+      this.getAllNowPlayingMovies();
+    }
+
+
   }
 
 
