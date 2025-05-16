@@ -64,4 +64,13 @@ export class MovieDetailsComponent implements OnInit{
     this.selectedMovieCreditsGet(movieId)
   }
 
+  isTrailerOpen = false;
+
+  openTrailer() {
+    this.isTrailerOpen = true;
+  }
+
+  closeTrailer() {
+    this.isTrailerOpen = false;
+  }
 }

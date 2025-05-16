@@ -72,6 +72,7 @@
           <!-- Play Trailer Button -->
           <button
             class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded flex items-center gap-2 transition"
+            (click)="openTrailer()"
           >
             ▶️ Play Trailer
           </button>
@@ -153,136 +154,136 @@
 
 
   <!-- Trailer Modal (optional static view) -->
-<!--  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">-->
-<!--    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg w-[90%] max-w-2xl relative">-->
-<!--      <button class="absolute top-0 right-1 text-black dark:text-white text-xl font-bold">-->
-<!--        &times;-->
-<!--      </button>-->
-<!--      <div class="aspect-w-16 aspect-h-9">-->
-<!--        <iframe-->
-<!--          width="100%"-->
-<!--          height="400"-->
-<!--          src="https://www.youtube.com/embed/YoHD9XEInc0"-->
-<!--          title="Trailer"-->
-<!--          frameborder="0"-->
-<!--          allowfullscreen-->
-<!--        ></iframe>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70"  *ngIf="isTrailerOpen">
+    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg w-[90%] max-w-2xl relative">
+      <button class="absolute top-0 right-1 text-black dark:text-white text-xl font-bold" (click)="closeTrailer()">
+        &times;
+      </button>
+      <div class="aspect-w-16 aspect-h-9">
+        <iframe
+          width="100%"
+          height="400"
+          src="https://www.youtube.com/embed/YoHD9XEInc0"
+          title="Trailer"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
 
 
   <!-- Bottom Tabs Section -->
-  <div class="px-4 md:px-20 py-6 mt-10">
-    <h2 class="text-xl font-semibold mb-4">Media</h2>
+<!--  <div class="px-4 md:px-20 py-6 mt-10">-->
+<!--    <h2 class="text-xl font-semibold mb-4">Media</h2>-->
 
-    <!-- Main Tabs -->
-    <div class="border-b border-gray-300 dark:border-gray-700 mb-4">
-      <ul class="flex flex-wrap text-sm font-medium text-center" id="tabs">
-        <li class="mr-2">
-          <button class="tab-btn px-4 py-2 rounded-t-lg active-tab" data-tab="logos">Logos</button>
-        </li>
-        <li>
-          <button class="tab-btn px-4 py-2 rounded-t-lg" data-tab="backdrops">Backdrops</button>
-        </li>
-        <li>
-          <button class="tab-btn px-4 py-2 rounded-t-lg" data-tab="posters">Posters</button>
-        </li>
-      </ul>
-    </div>
+<!--    &lt;!&ndash; Main Tabs &ndash;&gt;-->
+<!--    <div class="border-b border-gray-300 dark:border-gray-700 mb-4">-->
+<!--      <ul class="flex flex-wrap text-sm font-medium text-center" id="tabs">-->
+<!--        <li class="mr-2">-->
+<!--          <button class="tab-btn px-4 py-2 rounded-t-lg active-tab" data-tab="logos">Logos</button>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--          <button class="tab-btn px-4 py-2 rounded-t-lg" data-tab="backdrops">Backdrops</button>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--          <button class="tab-btn px-4 py-2 rounded-t-lg" data-tab="posters">Posters</button>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
 
-    <!-- Tab Contents -->
-    <!-- Logos Tab -->
-    <div id="logos" class="tab-content block">
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-        <!-- Logos -->
-        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">
-          <img
-            src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"
-            alt="Logo"
-            class="mx-auto  object-cover mb-3"
-          />
-          <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Logo 1</h3>
-        </div>
+<!--    &lt;!&ndash; Tab Contents &ndash;&gt;-->
+<!--    &lt;!&ndash; Logos Tab &ndash;&gt;-->
+<!--    <div id="logos" class="tab-content block">-->
+<!--      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">-->
+<!--        &lt;!&ndash; Logos &ndash;&gt;-->
+<!--        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">-->
+<!--          <img-->
+<!--            src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"-->
+<!--            alt="Logo"-->
+<!--            class="mx-auto  object-cover mb-3"-->
+<!--          />-->
+<!--          <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Logo 1</h3>-->
+<!--        </div>-->
 
-        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">
-          <img
-            src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"
-            alt="Logo"
-            class="mx-auto  object-cover mb-3"
-          />
-          <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Logo 2</h3>
-        </div>
-      </div>
-    </div>
+<!--        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">-->
+<!--          <img-->
+<!--            src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"-->
+<!--            alt="Logo"-->
+<!--            class="mx-auto  object-cover mb-3"-->
+<!--          />-->
+<!--          <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Logo 2</h3>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
 
-    <!-- Backdrops Tab -->
-    <div id="backdrops" class="tab-content hidden">
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-        <!-- Images -->
-      </div>
-    </div>
+<!--    &lt;!&ndash; Backdrops Tab &ndash;&gt;-->
+<!--    <div id="backdrops" class="tab-content hidden">-->
+<!--      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">-->
+<!--        &lt;!&ndash; Images &ndash;&gt;-->
+<!--      </div>-->
+<!--    </div>-->
 
-    <!-- Posters Tab -->
-    <div id="posters" class="tab-content hidden">
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-        <!-- Images -->
-        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">
-          <img
-            src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"
-            alt="Poster"
-            class="mx-auto  object-cover mb-3"
-          />
-          <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Poster 1</h3>
-        </div>
+<!--    &lt;!&ndash; Posters Tab &ndash;&gt;-->
+<!--    <div id="posters" class="tab-content hidden">-->
+<!--      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">-->
+<!--        &lt;!&ndash; Images &ndash;&gt;-->
+<!--        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">-->
+<!--          <img-->
+<!--            src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"-->
+<!--            alt="Poster"-->
+<!--            class="mx-auto  object-cover mb-3"-->
+<!--          />-->
+<!--          <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Poster 1</h3>-->
+<!--        </div>-->
 
-        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">
-          <img
-            src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"
-            alt="Poster"
-            class="mx-auto  object-cover mb-3"
-          />
-          <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Poster 2</h3>
-        </div>
-      </div>
-    </div>
+<!--        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">-->
+<!--          <img-->
+<!--            src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"-->
+<!--            alt="Poster"-->
+<!--            class="mx-auto  object-cover mb-3"-->
+<!--          />-->
+<!--          <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Poster 2</h3>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--</div>-->
 </div>
-</div>
 
-<!-- Tabs Script -->
-  <script>
-    document.querySelectorAll(".tab-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const tab = btn.getAttribute("data-tab");
+<!--&lt;!&ndash; Tabs Script &ndash;&gt;-->
+<!--  <script>-->
+<!--    document.querySelectorAll(".tab-btn").forEach((btn) => {-->
+<!--      btn.addEventListener("click", () => {-->
+<!--        const tab = btn.getAttribute("data-tab");-->
 
-        // Hide all tab contents
-        document.querySelectorAll(".tab-content").forEach((el) => {
-          el.classList.add("hidden");
-        });
+<!--        // Hide all tab contents-->
+<!--        document.querySelectorAll(".tab-content").forEach((el) => {-->
+<!--          el.classList.add("hidden");-->
+<!--        });-->
 
-        // Remove active styles from all buttons
-        document.querySelectorAll(".tab-btn").forEach((el) => {
-          el.classList.remove("active-tab", "border-b-2", "border-blue-500", "text-blue-600");
-        });
+<!--        // Remove active styles from all buttons-->
+<!--        document.querySelectorAll(".tab-btn").forEach((el) => {-->
+<!--          el.classList.remove("active-tab", "border-b-2", "border-blue-500", "text-blue-600");-->
+<!--        });-->
 
-        // Show selected tab content
-        document.getElementById(tab).classList.remove("hidden");
+<!--        // Show selected tab content-->
+<!--        document.getElementById(tab).classList.remove("hidden");-->
 
-        // Add active styles to clicked button
-        btn.classList.add("active-tab", "border-b-2", "border-blue-500", "text-blue-600");
-      });
-    });
-  </script>
-
+<!--        // Add active styles to clicked button-->
+<!--        btn.classList.add("active-tab", "border-b-2", "border-blue-500", "text-blue-600");-->
+<!--      });-->
+<!--    });-->
+<!--  </script>-->
 
 
-<!-- Tabs Style -->
-<style>
-  .tab-btn.active-tab {
-    @apply border-b-2 border-blue-600 text-blue-600 dark:text-blue-400;
-  }
 
-  .sub-tab-btn.active-sub-tab {
-    @apply bg-blue-500 text-white;
-  }
-</style>
+<!--&lt;!&ndash; Tabs Style &ndash;&gt;-->
+<!--<style>-->
+<!--  .tab-btn.active-tab {-->
+<!--    @apply border-b-2 border-blue-600 text-blue-600 dark:text-blue-400;-->
+<!--  }-->
+
+<!--  .sub-tab-btn.active-sub-tab {-->
+<!--    @apply bg-blue-500 text-white;-->
+<!--  }-->
+<!--</style>-->
