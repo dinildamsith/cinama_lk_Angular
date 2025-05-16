@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MovieServices} from '../../services/movie.services';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, NavigationEnd} from '@angular/router';
 import {NgForOf, NgIf} from '@angular/common';
+import {filter} from 'rxjs';
 
 @Component({
   selector: 'app-movie-details',
