@@ -86,6 +86,52 @@ export class MovieComponent implements OnInit {
     });
   }
 
+  // Function to fetch top rated movies
+  getTopRatedMovies() {
+    this.loading = true;
+
+    this.movieServices.getTopRatedMovies().subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.movies = res.results.map((movie: any) => ({
+          title: movie.title,
+          year: movie.release_date.split('-')[0],
+          image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          rating: movie.vote_average,
+          adult: movie.adult,
+        }));
+        this.loading = false; // ✅ move here
+      },
+      error: (err) => {
+        console.error('Error fetching top rated movies:', err);
+        this.loading = false; // ✅ also handle failure
+      }
+    });
+  }
+
+  // Function to fetch upcoming movies
+  getUpcomingMovies() {
+    this.loading = true;
+
+    this.movieServices.getUpcomingMovies().subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.movies = res.results.map((movie: any) => ({
+          title: movie.title,
+          year: movie.release_date.split('-')[0],
+          image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          rating: movie.vote_average,
+          adult: movie.adult,
+        }));
+        this.loading = false; // ✅ move here
+      },
+      error: (err) => {
+        console.error('Error fetching upcoming movies:', err);
+        this.loading = false; // ✅ also handle failure
+      }
+    });
+  }
+
   ngOnInit(): void {
 
     // Fetch all now playing movies when the component initializes
@@ -103,6 +149,7 @@ export class MovieComponent implements OnInit {
     // Get the selected category from the event
     this.selectedCategory = event.target.value;
 
+    console.log('Selected category:', this.selectedCategory);
 
     if (this.selectedCategory === 'popular') {
       this.getPopularMovies();
@@ -112,6 +159,13 @@ export class MovieComponent implements OnInit {
       this.getAllNowPlayingMovies();
     }
 
+    if (this.selectedCategory === 'top_rated') {
+      this.getTopRatedMovies();
+    }
+
+    if (this.selectedCategory === 'upcoming') {
+      this.getUpcomingMovies();
+    }
 
   }
 
