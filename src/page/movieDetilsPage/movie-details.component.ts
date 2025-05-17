@@ -23,12 +23,15 @@ export class MovieDetailsComponent implements OnInit{
 
   loading: boolean = false;
   isTrailerOpen = false;
+  selectedTab: string = 'tab1'; // Default selected tab
   safeTrailerUrl!: SafeResourceUrl;
 
   movieDetails: any = {}
   movieCredits: any = {}
   movieVideos: any = {}
   movieTrailer: any = {}
+  movieImages: any = {}
+
 
 
   //------------selected movie get by id
@@ -69,8 +72,8 @@ export class MovieDetailsComponent implements OnInit{
 
     this.movieService.getMovieVideos(movieId).subscribe({
       next : (res : any) => {
+        this.movieVideos = res
         console.log(res)
-        this.movieVideos = res // ------------set movie all videos
 
         //-------------get the official trailer
         this.movieTrailer = res.results.find(
@@ -92,6 +95,21 @@ export class MovieDetailsComponent implements OnInit{
     })
   }
 
+  //------------selected movie images get by id
+  selectedMovieImagesGet(movieId: any){
+    this.loading = true
+
+    this.movieService.getMovieImages(movieId).subscribe({
+      next : (res : any) => {
+        console.log(res)
+        this.movieImages = res
+        this.loading = false
+      }, error: (err: any) => {
+        console.log(err)
+        this.loading = false
+      }
+    })
+  }
 
   ngOnInit(): void {
     const movieId = this.route.snapshot.paramMap.get('movieId');
@@ -99,6 +117,7 @@ export class MovieDetailsComponent implements OnInit{
     this.selectedMovieGet(movieId) //------------get selected movie by id
     this.selectedMovieCreditsGet(movieId) //------------get selected movie credits by id
     this.selectedMovieVideosGet(movieId) //------------get selected movie videos by id
+    this.selectedMovieImagesGet(movieId) //------------get selected movie images by id
   }
 
   //------------open trailer
@@ -111,10 +130,10 @@ export class MovieDetailsComponent implements OnInit{
     this.isTrailerOpen = false;
   }
 
-  selectedTab: string = 'tab1'; // Default selected tab
-
+  //------------selected tab
   selectTab(tab: string) {
     this.selectedTab = tab;
   }
 
+  protected readonly console = console;
 }

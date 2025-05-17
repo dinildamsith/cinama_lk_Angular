@@ -4,7 +4,7 @@ import {
   NOW_PLAYING_ALL_MOVIES_GET_URL,
   POPULAR_ALL_MOVIES_GET_URL,
   SELECTED_MOVIE_CREDITS_GET_URL,
-  SELECTED_MOVIE_DETAILS_GET_URL,
+  SELECTED_MOVIE_DETAILS_GET_URL, SELECTED_MOVIE_IMAGES_GET_URL,
   SELECTED_MOVIE_VIDEOS_GET_URL,
   TOP_RATED_ALL_MOVIES_GET_URL,
   UPCOMING_ALL_MOVIES_GET_URL
@@ -45,5 +45,8 @@ export class MovieServices{
     return this.httpServices.get(SELECTED_MOVIE_VIDEOS_GET_URL + movieId + "/videos?language=en-US", true)
   }
 
+  getMovieImages(movieId:any) {
+    return this.httpServices.get(SELECTED_MOVIE_IMAGES_GET_URL + movieId + "/images", true)
+  }
 
 }
