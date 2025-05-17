@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MovieServices} from '../../services/movie.services';
 import {ActivatedRoute, NavigationEnd} from '@angular/router';
-import {NgForOf, NgIf} from '@angular/common';
+import {NgClass, NgForOf, NgIf} from '@angular/common';
 import {filter} from 'rxjs';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
@@ -11,7 +11,8 @@ import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
   standalone: true,
   imports: [
     NgIf,
-    NgForOf
+    NgForOf,
+    NgClass
   ],
 })
 
@@ -108,6 +109,12 @@ export class MovieDetailsComponent implements OnInit{
   //------------close trailer
   closeTrailer() {
     this.isTrailerOpen = false;
+  }
+
+  selectedTab: string = 'tab1'; // Default selected tab
+
+  selectTab(tab: string) {
+    this.selectedTab = tab;
   }
 
 }
