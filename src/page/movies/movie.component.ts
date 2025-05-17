@@ -34,8 +34,8 @@ export class MovieComponent implements OnInit {
   ];
 
   loading: boolean = false;
-  // Array to hold now playing movies
   movies: any[] = [];
+  selectedCategory: string = ''
 
   // Index to track the current banner being displayed
   currentBannerIndex = 0;
@@ -148,25 +148,30 @@ export class MovieComponent implements OnInit {
   }
 
 
-  selectedCategory: string = ''
+
+  // Function to handle category change
   onCategoryChange(event: any) {
     // Get the selected category from the event
     this.selectedCategory = event.target.value;
 
     console.log('Selected category:', this.selectedCategory);
 
+    // popular movies
     if (this.selectedCategory === 'popular') {
       this.getPopularMovies();
     }
 
+    // Now playing movies
     if (this.selectedCategory === 'now_playing') {
       this.getAllNowPlayingMovies();
     }
 
+    // Top rated movies
     if (this.selectedCategory === 'top_rated') {
       this.getTopRatedMovies();
     }
 
+    // Upcoming movies
     if (this.selectedCategory === 'upcoming') {
       this.getUpcomingMovies();
     }
