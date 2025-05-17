@@ -73,7 +73,7 @@ export class MovieDetailsComponent implements OnInit{
 
         //-------------get the official trailer
         this.movieTrailer = res.results.find(
-          (video: any) => video.type === 'Trailer' && video.name === 'Official Trailer'
+          (video: any) => video.type === 'Trailer' && video.name === 'Official Trailer' || 'Trailer'
         );
         console.log(this.movieTrailer);
 
