@@ -69,8 +69,9 @@ export class MovieDetailsComponent implements OnInit{
     this.movieService.getMovieVideos(movieId).subscribe({
       next : (res : any) => {
         console.log(res)
-        this.movieVideos = res
+        this.movieVideos = res // ------------set movie all videos
 
+        //-------------get the official trailer
         this.movieTrailer = res.results.find(
           (video: any) => video.type === 'Trailer' && video.name === 'Official Trailer'
         );
@@ -94,22 +95,19 @@ export class MovieDetailsComponent implements OnInit{
   ngOnInit(): void {
     const movieId = this.route.snapshot.paramMap.get('movieId');
     console.log(movieId)
-    this.selectedMovieGet(movieId)
-    this.selectedMovieCreditsGet(movieId)
-    this.selectedMovieVideosGet(movieId)
+    this.selectedMovieGet(movieId) //------------get selected movie by id
+    this.selectedMovieCreditsGet(movieId) //------------get selected movie credits by id
+    this.selectedMovieVideosGet(movieId) //------------get selected movie videos by id
   }
 
+  //------------open trailer
   openTrailer() {
     this.isTrailerOpen = true;
   }
 
+  //------------close trailer
   closeTrailer() {
     this.isTrailerOpen = false;
   }
-
-  // getSafeUrl(): SafeResourceUrl {
-  //   const url = `https://www.youtube.com/embed/${this.movieTrailer?.key}`;
-  //   return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-  // }
 
 }

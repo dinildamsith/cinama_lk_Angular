@@ -71,10 +71,19 @@
 
           <!-- Play Trailer Button -->
           <button
+            *ngIf="movieVideos?.results?.length > 0"
             class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded flex items-center gap-2 transition"
             (click)="openTrailer()"
           >
             ▶️ Play Trailer
+          </button>
+
+          <button
+            *ngIf="movieVideos?.results?.length === 0"
+            class="bg-gray-400 text-white px-4 py-2 rounded flex items-center gap-2 cursor-not-allowed"
+            disabled
+          >
+            ❌ Trailer Unavailable
           </button>
         </div>
       </div>
