@@ -15,23 +15,23 @@ import {TvShowsService} from '../../services/tv-shows.service';
 
 export class TvShowsComponent implements OnInit {
 
+  //------------service inject
   constructor(private tvShowsServices: TvShowsService) {}
 
+  //-------------states
+  loading = false
+  allTvSeries: any = [];
 
   banners: string[] = [
     'assets/baner-1.jpg',
     'assets/baner-2.jpg',
     'assets/baner-3.jpg',
   ];
-
-  loading = false
-  allTvSeries: any = [];
-
   currentBannerIndex = 0;
 
-  getAllPopularMovies() {
+  //------------get all popular tv shows
+  getAllPopularTvShows() {
     this.loading = true;
-
     this.tvShowsServices.getPopularTvShows().subscribe({
       next: (res: any) => {
         console.log(res);
@@ -50,14 +50,10 @@ export class TvShowsComponent implements OnInit {
         this.loading = false;
       }
     });
-
-
-
-
   }
 
   ngOnInit(): void {
-    this.getAllPopularMovies();
+    this.getAllPopularTvShows()
     setInterval(() => {
       this.currentBannerIndex = (this.currentBannerIndex + 1) % this.banners.length;
     }, 3000); // Change every 3 seconds
