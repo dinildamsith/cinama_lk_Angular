@@ -12,6 +12,7 @@ import {NgForOf, NgIf} from '@angular/common';
   ],
 })
 export class TvShowsCardComponent {
+  @Input() id: number = 0;
   @Input() title: string = '';
   @Input() image: string = '';
   @Input() rating: number = 0;

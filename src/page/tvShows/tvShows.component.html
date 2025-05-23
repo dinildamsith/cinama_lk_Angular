@@ -19,6 +19,18 @@
     <div class="w-full md:w-1/4 bg-[#ccd9dd] dark:bg-gray-800 p-4 rounded-lg shadow-md">
       <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Filters</h2>
       <form>
+
+        <div class="mb-4">
+          <label for="category" class="block text-sm text-gray-700 dark:text-gray-300">Category</label>
+          <select id="category"  (change)="onCategoryChange($event)"  class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
+            <option value="popular">Popular</option>
+            <option value="airing_today">Airing Today</option>
+            <option value="on_the_air">On TV</option>
+            <option value="top_rated">Top Rated</option>
+          </select>
+        </div>
+
+
         <div class="mb-4">
           <label for="genre" class="block text-sm text-gray-700 dark:text-gray-300">Genre</label>
           <select id="genre" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
@@ -54,10 +66,11 @@
     <!-- Movie Cards Section -->
     <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       <app-tv-shows-card
-        *ngFor="let movie of movies"
-        [image]="movie.image"
-        [title]="movie.title"
-        [rating]="movie.rating"
+        *ngFor="let tvSeries of allTvSeries"
+        [id]="tvSeries.id"
+        [image]="tvSeries.image"
+        [title]="tvSeries.title"
+        [rating]="tvSeries.rating"
        />
     </div>
 

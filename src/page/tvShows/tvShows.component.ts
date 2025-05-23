@@ -1,19 +1,22 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
-import {MovieCardComponent} from '../../components/movieCard/movie-card.component';
 import {TvShowsCardComponent} from '../../components/tvShowsCard/tvShows-card.component';
+import {TvShowsService} from '../../services/tv-shows.service';
 
 @Component({
   selector: 'app-tv-shows',
   templateUrl: './tvShows.component.html',
   imports: [
     NgForOf,
-    TvShowsCardComponent
+    TvShowsCardComponent,
   ],
   standalone: true
 })
 
 export class TvShowsComponent implements OnInit {
+
+  constructor(private tvShowsServices: TvShowsService) {}
+
 
   banners: string[] = [
     'assets/baner-1.jpg',
@@ -21,54 +24,48 @@ export class TvShowsComponent implements OnInit {
     'assets/baner-3.jpg',
   ];
 
+  loading = false
+  allTvSeries: any = [];
+
   currentBannerIndex = 0;
 
+  getAllPopularMovies() {
+    this.loading = true;
+
+    this.tvShowsServices.getPopularTvShows().subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.allTvSeries = res.results.map((movie: any) => ({
+          id:movie.id,
+          title: movie.name,
+          year: movie.first_air_date.split('-')[0],
+          image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          rating: movie.vote_average,
+          adult: movie.adult,
+        }));
+        this.loading = false; // ✅ move here
+      },
+      error: (err) => {
+        console.error(err);
+        this.loading = false;
+      }
+    });
+
+
+
+
+  }
+
   ngOnInit(): void {
+    this.getAllPopularMovies();
     setInterval(() => {
       this.currentBannerIndex = (this.currentBannerIndex + 1) % this.banners.length;
     }, 3000); // Change every 3 seconds
   }
 
-  movies = [
-    {
-      title: 'The Shawshank Redemption',
-      year: 1994,
-      image: 'https://i5.walmartimages.com/seo/Avengers-Infinity-War-Movie-Poster-Print-Regular-Style-Size-24-X-36_65e23347-2ccc-4581-9700-581e0ea9c3a8.a808f8889bfa9e368659fbefc5e5dda4.jpeg',
-      rating: 9.3,
-      adult: false,
-    },
-    {
-      title: 'The Shawshank Redemption',
-      year: 1994,
-      image: 'https://i5.walmartimages.com/seo/Avengers-Infinity-War-Movie-Poster-Print-Regular-Style-Size-24-X-36_65e23347-2ccc-4581-9700-581e0ea9c3a8.a808f8889bfa9e368659fbefc5e5dda4.jpeg',
-      rating: 9.3,
-      adult: false,
-    }
-    ,
-    {
-      title: 'The Shawshank Redemption',
-      year: 1994,
-      image: 'https://i5.walmartimages.com/seo/Avengers-Infinity-War-Movie-Poster-Print-Regular-Style-Size-24-X-36_65e23347-2ccc-4581-9700-581e0ea9c3a8.a808f8889bfa9e368659fbefc5e5dda4.jpeg',
-      rating: 1.3,
-      adult: false,
-    },
-    {
-      title: 'The Shawshank Redemption',
-      year: 1994,
-      image: 'https://i5.walmartimages.com/seo/Avengers-Infinity-War-Movie-Poster-Print-Regular-Style-Size-24-X-36_65e23347-2ccc-4581-9700-581e0ea9c3a8.a808f8889bfa9e368659fbefc5e5dda4.jpeg',
-      rating: 3.3,
-      adult: false,
-    },
-    {
-      title: 'The Shawshank Redemption',
-      year: 1994,
-      image: 'https://i5.walmartimages.com/seo/Avengers-Infinity-War-Movie-Poster-Print-Regular-Style-Size-24-X-36_65e23347-2ccc-4581-9700-581e0ea9c3a8.a808f8889bfa9e368659fbefc5e5dda4.jpeg',
-      rating: 10,
-      adult: false,
-    }
-  ];
-
-  constructor() {
+  onCategoryChange(event: any) {
+    const selectedCategory = event.target.value;
+    console.log('Selected category:', selectedCategory);
+    // Perform any additional logic based on the selected category
   }
-
 }
