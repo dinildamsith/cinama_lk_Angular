@@ -12,3 +12,4 @@ export const SELECTED_MOVIE_IMAGES_GET_URL = "movie/"
 
 //-----------------------TV SHOWS-----------------------
 export const POPULAR_ALL_TV_SHOWS_GET_URL = "tv/popular?language=en-US&page=1"
+export const TOP_RATED_ALL_TV_SHOWS_GET_URL = "tv/top_rated?language=en-US&page=1"

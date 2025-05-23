@@ -52,6 +52,29 @@ export class TvShowsComponent implements OnInit {
     });
   }
 
+  //------------get all top rated tv shows
+  getAllTopRatedTvShows() {
+    this.loading = true;
+    this.tvShowsServices.getTopRatedTvShows().subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.allTvSeries = res.results.map((movie: any) => ({
+          id:movie.id,
+          title: movie.name,
+          year: movie.first_air_date.split('-')[0],
+          image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          rating: movie.vote_average,
+          adult: movie.adult,
+        }));
+        this.loading = false; // ✅ move here
+      },
+      error: (err) => {
+        console.error(err);
+        this.loading = false;
+      }
+    });
+  }
+
   ngOnInit(): void {
     this.getAllPopularTvShows()
     setInterval(() => {
@@ -61,7 +84,12 @@ export class TvShowsComponent implements OnInit {
 
   onCategoryChange(event: any) {
     const selectedCategory = event.target.value;
-    console.log('Selected category:', selectedCategory);
-    // Perform any additional logic based on the selected category
+
+    if (selectedCategory === 'popular') {
+      this.getAllPopularTvShows();
+    } else if (selectedCategory === 'top_rated') {
+      this.getAllTopRatedTvShows();
+    }
+
   }
 }
