@@ -107,42 +107,24 @@
   </div>
 
 
-<!--  <div class="px-4 md:px-20 py-4">-->
-<!--    <h2 class="text-xl font-semibold mb-4">Cast</h2>-->
-<!--    <div class="flex overflow-x-auto gap-6 scroll-smooth pb-4">-->
+  <div class="px-4 md:px-20 py-4">
+    <h2 class="text-xl font-semibold mb-4">Crew</h2>
+    <div class="flex overflow-x-auto gap-6 scroll-smooth pb-4">
 
-<!--      &lt;!&ndash; Cast Member Card &ndash;&gt;-->
-<!--      <div class="min-w-[250px]  bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4" *ngFor="let cast of movieCredits?.cast">-->
-<!--        <img-->
-<!--          [src]="cast.profile_path ? 'https://image.tmdb.org/t/p/w500' + cast.profile_path : '/assets/not-ffound-image.jpg'"-->
-<!--          alt="{{ cast.name }}"-->
-<!--          class="mx-auto object-cover mb-3"-->
-<!--        />-->
+      <!-- Crew Member Card -->
+      <div class="min-w-[250px] bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4" *ngFor="let crew of crew">
+        <img
+          [src]="crew.profile_path ? 'https://image.tmdb.org/t/p/w500' + crew.profile_path : '/assets/not-ffound-image.jpg'"
+          alt="{{ crew.name }}"
+          class="mx-auto object-cover mb-3"
+        />
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Name: {{crew.original_name}}</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Department:  {{crew?.department}}</p>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Job:  {{crew?.job}}</p>
+      </div>
 
-<!--        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">{{cast?.original_name}}</h3>-->
-<!--        <p class="text-sm text-gray-600 dark:text-gray-300">{{cast?.character}}</p>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  <div class="px-4 md:px-20 py-4">-->
-<!--    <h2 class="text-xl font-semibold mb-4">Crew</h2>-->
-<!--    <div class="flex overflow-x-auto gap-6 scroll-smooth pb-4">-->
-
-<!--      &lt;!&ndash; Crew Member Card &ndash;&gt;-->
-<!--      <div class="min-w-[250px] bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4" *ngFor="let crew of movieCredits?.crew">-->
-<!--        <img-->
-<!--          [src]="crew.profile_path ? 'https://image.tmdb.org/t/p/w500' + crew.profile_path : '/assets/not-ffound-image.jpg'"-->
-<!--          alt="{{ crew.name }}"-->
-<!--          class="mx-auto object-cover mb-3"-->
-<!--        />-->
-<!--        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Name: {{crew.original_name}}</h3>-->
-<!--        <p class="text-sm text-gray-600 dark:text-gray-300">Department:  {{crew?.department}}</p>-->
-<!--        <p class="text-sm text-gray-600 dark:text-gray-300">Job:  {{crew?.job}}</p>-->
-<!--      </div>-->
-
-<!--    </div>-->
-<!--  </div>-->
+    </div>
+  </div>
 
 
   <!-- Companies -->
