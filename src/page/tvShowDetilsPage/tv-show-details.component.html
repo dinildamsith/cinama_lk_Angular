@@ -88,7 +88,7 @@
   </div>
 
   <!-- Credits -->
-  <div class="px-4 md:px-20 py-4">
+  <div class="px-4 md:px-20 py-4" *ngIf="cast && cast.length > 0">
     <h2 class="text-xl font-semibold mb-4">Cast</h2>
     <div class="flex overflow-x-auto gap-6 scroll-smooth pb-4">
 
@@ -107,7 +107,8 @@
   </div>
 
 
-  <div class="px-4 md:px-20 py-4">
+
+  <div class="px-4 md:px-20 py-4" *ngIf="crew && crew.length > 0">
     <h2 class="text-xl font-semibold mb-4">Crew</h2>
     <div class="flex overflow-x-auto gap-6 scroll-smooth pb-4">
 
@@ -128,7 +129,7 @@
 
 
   <!-- Companies -->
-  <div class="px-4 md:px-20 py-4">
+  <div class="px-4 md:px-20 py-4" *ngIf="tvSeriesDetails?.production_companies && tvSeriesDetails?.production_companies.length > 0">
     <h2 class="text-xl font-semibold mb-4">Production Companies</h2>
 
     <!-- Horizontal Scroll Container -->
