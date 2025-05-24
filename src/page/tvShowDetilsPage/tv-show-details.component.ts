@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TvShowsService} from '../../services/tv-shows.service';
 import {ActivatedRoute} from '@angular/router';
 import {NgClass, NgForOf, NgIf} from '@angular/common';
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tv-show-details',
@@ -18,14 +19,16 @@ export class TvShowDetailsComponent implements OnInit{
 
   loading: boolean = false;
   selectedTab: string = 'tab1';
+  isTrailerOpen = false;
+  safeTrailerUrl!: SafeResourceUrl;
   tvSeriesDetails: any = {}
-
+  tvShowTrailer: any = {};
   crew: any[] = [];
   cast: any[] = [];
   images: any = {};
   videos: any[] = [];
 
-  constructor(private tvShowsService : TvShowsService, private route: ActivatedRoute) {}
+  constructor(private tvShowsService : TvShowsService, private route: ActivatedRoute, private sanitizer: DomSanitizer) {}
 
   //---------------selected tv show details get----------------
   getTvShowDetails(id: number) {
@@ -61,6 +64,19 @@ export class TvShowDetailsComponent implements OnInit{
     this.tvShowsService.getTvShowVideos(id).subscribe((response:any) => {
       console.log('TV Show Videos Response:', response);
       this.videos = response?.results;
+
+      //-------------get the official trailer
+      this.tvShowTrailer = response.results.find(
+        (video: any) => video.type === 'Trailer' && video.name === 'Official Trailer' || 'Trailer'
+      );
+
+      if (this.tvShowTrailer) {
+        const url = `https://www.youtube.com/embed/${this.tvShowTrailer.key}`;
+        this.safeTrailerUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+      }
+
+      console.log(this.tvShowTrailer);
+
       console.log(this.videos);
       this.loading = false;
     }, (error) => {
@@ -100,6 +116,16 @@ export class TvShowDetailsComponent implements OnInit{
   //------------selected tab
   selectTab(tab: string) {
     this.selectedTab = tab;
+  }
+
+  //------------open trailer
+  openTrailer() {
+    this.isTrailerOpen = true;
+  }
+
+  //------------close trailer
+  closeTrailer() {
+    this.isTrailerOpen = false;
   }
 
 }

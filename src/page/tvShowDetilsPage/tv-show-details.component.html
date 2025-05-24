@@ -69,6 +69,7 @@
 
           <!-- Play Trailer Button -->
           <button
+            (click)="openTrailer()"
             class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded flex items-center gap-2 transition"
           >
             ▶️ Play Trailer
@@ -256,22 +257,23 @@
   </div>
 
     <!-- Trailer Modal (optional static view) -->
-<!--  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">-->
-<!--    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg w-[90%] max-w-2xl relative">-->
-<!--      <button class="absolute top-0 right-1 text-black dark:text-white text-xl font-bold">-->
-<!--        &times;-->
-<!--      </button>-->
-<!--      <div class="aspect-w-16 aspect-h-9">-->
-<!--        <iframe-->
-<!--          width="100%"-->
-<!--          height="400"-->
-<!--          src="https://www.youtube.com/embed/YoHD9XEInc0"-->
-<!--          title="Trailer"-->
-<!--          frameborder="0"-->
-<!--          allowfullscreen-->
-<!--        ></iframe>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70" *ngIf="isTrailerOpen">
+    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg w-[90%] max-w-2xl relative">
+      <button class="absolute top-0 right-1 text-black dark:text-white text-xl font-bold" (click)="closeTrailer()">
+        &times;
+      </button>
+      <div class="aspect-w-16 aspect-h-9">
+        <iframe
+          width="100%"
+          height="400"
+          *ngIf="safeTrailerUrl"
+          [src]="safeTrailerUrl"
+          title="Trailer"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
 
 </div>
