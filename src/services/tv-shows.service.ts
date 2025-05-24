@@ -1,6 +1,7 @@
 import {HttpService} from './http.service';
 import {Injectable} from '@angular/core';
 import {
+  AIRING_TODAY_ALL_TV_SHOWS_GET_URL,
   ON_THE_AIR_ALL_TV_SHOWS_GET_URL,
   POPULAR_ALL_TV_SHOWS_GET_URL,
   TOP_RATED_ALL_TV_SHOWS_GET_URL
@@ -21,5 +22,9 @@ export class TvShowsService {
 
   getOnTheAirTvShows(){
     return this.httpServices.get(ON_THE_AIR_ALL_TV_SHOWS_GET_URL, true);
+  }
+
+  getAiringTodayTvShows() {
+    return this.httpServices.get(AIRING_TODAY_ALL_TV_SHOWS_GET_URL, true);
   }
 }
