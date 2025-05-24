@@ -75,6 +75,29 @@ export class TvShowsComponent implements OnInit {
     });
   }
 
+  //------------get all on the air tv shows
+  getAllOnTheAirTvShows() {
+    this.loading = true;
+    this.tvShowsServices.getOnTheAirTvShows().subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.allTvSeries = res.results.map((movie: any) => ({
+          id:movie.id,
+          title: movie.name,
+          year: movie.first_air_date.split('-')[0],
+          image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          rating: movie.vote_average,
+          adult: movie.adult,
+        }));
+        this.loading = false; // ✅ move here
+      },
+      error: (err) => {
+        console.error(err);
+        this.loading = false;
+      }
+    });
+  }
+
   ngOnInit(): void {
     this.getAllPopularTvShows()
     setInterval(() => {
@@ -89,6 +112,8 @@ export class TvShowsComponent implements OnInit {
       this.getAllPopularTvShows();
     } else if (selectedCategory === 'top_rated') {
       this.getAllTopRatedTvShows();
+    } else if (selectedCategory === 'on_the_air') {
+      this.getAllOnTheAirTvShows();
     }
 
   }
