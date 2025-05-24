@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TvShowsService} from '../../services/tv-shows.service';
 import {ActivatedRoute} from '@angular/router';
-import {NgForOf, NgIf} from '@angular/common';
+import {NgClass, NgForOf, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-tv-show-details',
@@ -9,16 +9,21 @@ import {NgForOf, NgIf} from '@angular/common';
   standalone: true,
   imports: [
     NgIf,
-    NgForOf
+    NgForOf,
+    NgClass
   ],
 })
 
 export class TvShowDetailsComponent implements OnInit{
 
   loading: boolean = false;
+  selectedTab: string = 'tab1';
   tvSeriesDetails: any = {}
+
   crew: any[] = [];
   cast: any[] = [];
+  images: any = {};
+  videos: any[] = [];
 
   constructor(private tvShowsService : TvShowsService, private route: ActivatedRoute) {}
 
@@ -50,6 +55,34 @@ export class TvShowDetailsComponent implements OnInit{
     });
   }
 
+  //---------------selected tv show videos get----------------
+  getTvShowVideos(id: number) {
+    this.loading = true;
+    this.tvShowsService.getTvShowVideos(id).subscribe((response:any) => {
+      console.log('TV Show Videos Response:', response);
+      this.videos = response?.results;
+      console.log(this.videos);
+      this.loading = false;
+    }, (error) => {
+      console.error('Error fetching TV show videos:', error);
+      this.loading = false;
+    });
+  }
+
+  //---------------selected tv show images get----------------
+  getTvShowImages(id: number) {
+    this.loading = true;
+    this.tvShowsService.getTvShowImages(id).subscribe((response:any) => {
+      console.log('TV Show Images Response:', response);
+      this.images = response
+      console.log(this.images);
+      this.loading = false;
+    }, (error) => {
+      console.error('Error fetching TV show images:', error);
+      this.loading = false;
+    });
+  }
+
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('tvShowId');
 
@@ -57,9 +90,16 @@ export class TvShowDetailsComponent implements OnInit{
     if (id) {
       this.getTvShowDetails(+id);
       this.getTvShowCredits(+id);
+      this.getTvShowVideos(+id);
+      this.getTvShowImages(+id);
     } else {
       console.error('No TV show ID found in the route.');
     }
+  }
+
+  //------------selected tab
+  selectTab(tab: string) {
+    this.selectedTab = tab;
   }
 
 }

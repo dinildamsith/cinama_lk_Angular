@@ -18,3 +18,5 @@ export const AIRING_TODAY_ALL_TV_SHOWS_GET_URL = "tv/airing_today?language=en-US
 
 export const SELECTED_TV_SHOW_DETAILS_GET_URL = "tv/"
 export const TV_SERIES_CREDITS_GET_URL = "tv/"
+export const TV_SERIES_VIDEOS_GET_URL = "tv/"
+export const TV_SERIES_IMAGES_GET_URL = "tv/"

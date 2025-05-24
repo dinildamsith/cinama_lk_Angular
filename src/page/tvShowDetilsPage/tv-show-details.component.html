@@ -152,7 +152,110 @@
   </div>
 
 
-  <!-- Trailer Modal (optional static view) -->
+  <!-- Media -->
+  <div class="px-4 md:px-20 py-4">
+    <h2 class="text-xl font-semibold mb-4">Media</h2>
+
+    <!-- Tab buttons -->
+    <div class="flex space-x-4  mb-4">
+      <button
+        class="py-2 px-4"
+        [ngClass]="selectedTab === 'tab1' ? 'border-b-2 border-blue-600 text-blue-600' : 'text-gray-600'"
+        (click)="selectTab('tab1')"
+      >
+        Backdrops
+<!--        ({{movieImages?.backdrops?.length}})-->
+      </button>
+      <button
+        class="py-2 px-4"
+        [ngClass]="selectedTab === 'tab2' ? 'border-b-2 border-blue-600 text-blue-600' : 'text-gray-600'"
+        (click)="selectTab('tab2')"
+      >
+        Posters
+<!--        ({{movieImages?.posters?.length}})-->
+      </button>
+      <button
+        class="py-2 px-4"
+        [ngClass]="selectedTab === 'tab3' ? 'border-b-2 border-blue-600 text-blue-600' : 'text-gray-600'"
+        (click)="selectTab('tab3')"
+      >
+        Logos
+<!--        ({{movieImages?.logos?.length}})-->
+      </button>
+    </div>
+
+
+    <!-- Tab content -->
+    <div *ngIf="selectedTab === 'tab1'" class="p-4  bg-gray-100 dark:bg-gray-800 rounded">
+      <!-- Horizontal Scroll Container -->
+      <div class="flex overflow-x-auto gap-6 scroll-smooth pb-4">
+        <div
+          *ngFor="let backdrop of images?.backdrops"
+          class="min-w-[380px] bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center"
+        >
+          <a
+            *ngIf="backdrop?.file_path"
+            [href]="'https://image.tmdb.org/t/p/original' + backdrop.file_path"
+            target="_blank"
+          >
+            <img
+              [src]="'https://image.tmdb.org/t/p/w500' + backdrop.file_path"
+              class="object-contain mx-auto cursor-pointer"
+              alt="Backdrop Image"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab content -->
+    <div *ngIf="selectedTab === 'tab2'" class="p-4  bg-gray-100 dark:bg-gray-800 rounded">
+      <!-- Horizontal Scroll Container -->
+      <div class="flex overflow-x-auto gap-6 scroll-smooth pb-4">
+        <div
+          *ngFor="let poster of images?.posters"
+          class="min-w-[230px] bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center"
+        >
+          <a
+            *ngIf="poster?.file_path"
+            [href]="'https://image.tmdb.org/t/p/original' + poster.file_path"
+            target="_blank"
+          >
+            <img
+              [src]="'https://image.tmdb.org/t/p/w500' + poster.file_path"
+              class="object-contain mx-auto cursor-pointer"
+              alt="Backdrop Image"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab content -->
+    <div *ngIf="selectedTab === 'tab3'" class="p-4  bg-gray-100 dark:bg-gray-800 rounded">
+      <!-- Horizontal Scroll Container -->
+      <div class="flex overflow-x-auto gap-6 scroll-smooth pb-4">
+        <div
+          *ngFor="let logo of images?.logos"
+          class="min-w-[380px] bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center"
+        >
+          <a
+            *ngIf="logo?.file_path"
+            [href]="'https://image.tmdb.org/t/p/original' + logo.file_path"
+            target="_blank"
+          >
+            <img
+              [src]="'https://image.tmdb.org/t/p/w500' + logo.file_path"
+              class="object-contain mx-auto cursor-pointer"
+              alt="Backdrop Image"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Trailer Modal (optional static view) -->
 <!--  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">-->
 <!--    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg w-[90%] max-w-2xl relative">-->
 <!--      <button class="absolute top-0 right-1 text-black dark:text-white text-xl font-bold">-->
