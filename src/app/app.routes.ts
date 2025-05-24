@@ -10,5 +10,5 @@ export const routes: Routes = [
   {path:'tv-shows', component: TvShowsComponent},
   {path:'people', component: PeopleComponent},
   {path: 'movie-details/:movieId', component: MovieDetailsComponent},
-  {path: 'tv-show-details', component: TvShowDetailsComponent}
+  {path: 'tv-show-details/:tvShowId', component: TvShowDetailsComponent}
 ];

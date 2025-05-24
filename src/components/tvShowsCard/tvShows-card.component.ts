@@ -1,6 +1,7 @@
 // tvShows-card.component.ts
 import { Component, Input } from '@angular/core';
 import {NgForOf, NgIf} from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-tv-shows-card',
@@ -8,7 +9,8 @@ import {NgForOf, NgIf} from '@angular/common';
   standalone: true,
   imports: [
     NgForOf,
-    NgIf
+    NgIf,
+    RouterLink
   ],
 })
 export class TvShowsCardComponent {
