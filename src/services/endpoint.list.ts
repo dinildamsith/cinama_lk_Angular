@@ -17,3 +17,4 @@ export const ON_THE_AIR_ALL_TV_SHOWS_GET_URL = "tv/on_the_air?language=en-US&pag
 export const AIRING_TODAY_ALL_TV_SHOWS_GET_URL = "tv/airing_today?language=en-US&page=1"
 
 export const SELECTED_TV_SHOW_DETAILS_GET_URL = "tv/"
+export const TV_SERIES_CREDITS_GET_URL = "tv/"

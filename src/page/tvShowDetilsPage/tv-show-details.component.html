@@ -36,7 +36,7 @@
         </span>
 
         <p class="text-sm md:text-base text-gray-300 dark:text-gray-400">
-          {{tvSeriesDetails.episode_run_time[0]}} min | {{tvSeriesDetails.type}} | {{tvSeriesDetails.tagline}}
+          {{tvSeriesDetails?.episode_run_time}} min | {{tvSeriesDetails.type}} | {{tvSeriesDetails.tagline}}
         </p>
 
         <p class="text-yellow-500 font-semibold text-lg">⭐ {{tvSeriesDetails?.vote_average}} / 10</p>
@@ -88,23 +88,23 @@
   </div>
 
   <!-- Credits -->
-<!--  <div class="px-4 md:px-20 py-4">-->
-<!--    <h2 class="text-xl font-semibold mb-4">Cast</h2>-->
-<!--    <div class="flex overflow-x-auto gap-6 scroll-smooth pb-4">-->
+  <div class="px-4 md:px-20 py-4">
+    <h2 class="text-xl font-semibold mb-4">Cast</h2>
+    <div class="flex overflow-x-auto gap-6 scroll-smooth pb-4">
 
-<!--      &lt;!&ndash; Cast Member Card &ndash;&gt;-->
-<!--      <div class="min-w-[250px]  bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4" *ngFor="let cast of tvSeriesDetailss?.cast">-->
-<!--        <img-->
-<!--          [src]="cast.profile_path ? 'https://image.tmdb.org/t/p/w500' + cast.profile_path : '/assets/not-ffound-image.jpg'"-->
-<!--          alt="{{ cast.name }}"-->
-<!--          class="mx-auto object-cover mb-3"-->
-<!--        />-->
+      <!-- Cast Member Card -->
+      <div class="min-w-[250px]  bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4" *ngFor="let cast of cast">
+        <img
+          [src]="cast.profile_path ? 'https://image.tmdb.org/t/p/w500' + cast.profile_path : '/assets/not-ffound-image.jpg'"
+          alt="{{ cast.name }}"
+          class="mx-auto object-cover mb-3"
+        />
 
-<!--        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">{{cast?.original_name}}</h3>-->
-<!--        <p class="text-sm text-gray-600 dark:text-gray-300">{{cast?.character}}</p>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">{{cast?.original_name}}</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-300">{{cast?.character}}</p>
+      </div>
+    </div>
+  </div>
 
 
 <!--  <div class="px-4 md:px-20 py-4">-->

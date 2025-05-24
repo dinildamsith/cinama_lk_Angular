@@ -17,6 +17,8 @@ export class TvShowDetailsComponent implements OnInit{
 
   loading: boolean = false;
   tvSeriesDetails: any = {}
+  crew: any[] = [];
+  cast: any[] = [];
 
   constructor(private tvShowsService : TvShowsService, private route: ActivatedRoute) {}
 
@@ -33,12 +35,28 @@ export class TvShowDetailsComponent implements OnInit{
     });
   }
 
+  //---------------selected tv show credits get----------------
+  getTvShowCredits(id: number) {
+    this.loading = true;
+    this.tvShowsService.getTvShowCredits(id).subscribe((response:any) => {
+      console.log('TV Show Credits Response:', response);
+      this.crew = response?.crew;
+      this.cast = response?.cast;
+      console.log(this.crew, this.cast);
+      this.loading = false;
+    }, (error) => {
+      console.error('Error fetching TV show credits:', error);
+      this.loading = false;
+    });
+  }
+
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('tvShowId');
 
     // Check if the id is not null or undefined
     if (id) {
       this.getTvShowDetails(+id);
+      this.getTvShowCredits(+id);
     } else {
       console.error('No TV show ID found in the route.');
     }
