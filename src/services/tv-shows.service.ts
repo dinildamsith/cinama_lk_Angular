@@ -27,4 +27,8 @@ export class TvShowsService {
   getAiringTodayTvShows() {
     return this.httpServices.get(AIRING_TODAY_ALL_TV_SHOWS_GET_URL, true);
   }
+
+  getTvShowDetails(id: number) {
+    return this.httpServices.get(`tv/${id}`, true);
+  }
 }

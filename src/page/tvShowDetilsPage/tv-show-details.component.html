@@ -1,8 +1,12 @@
+<div *ngIf="loading" class="fixed inset-0 z-50 flex items-center justify-center">
+  <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-500"></div>
+</div>
+
 <div class="text-gray-900 dark:text-white bg-white dark:bg-gray-900 -mt-12">
   <!-- Background Banner -->
   <div
     class="relative h-auto min-h-[400px] bg-cover bg-center -mt-24"
-    style="background-image: url('https://image.tmdb.org/t/p/w500/s3TBrRGB1iav7gFOCNx3H31MoES.jpg')"
+    [style.backgroundImage]="'url(https://image.tmdb.org/t/p/original' + tvSeriesDetails.backdrop_path + ')'"
   >
     <!-- Dark overlay -->
     <div class="absolute inset-0 bg-black bg-opacity-60 dark:bg-opacity-60"></div>
@@ -12,7 +16,7 @@
 
       <!-- Movie Poster -->
       <img
-        src="https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg"
+        [src]="'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + tvSeriesDetails.poster_path"
         alt="Movie Poster"
         class="w-40 sm:w-48 md:w-[190px] aspect-[2/3] rounded-lg object-cover shadow-lg mt-24"
       />
@@ -20,17 +24,22 @@
       <!-- Movie Info -->
       <div class="flex flex-col flex-1 gap-3 text-center md:text-left mt-24 max-[767px]:mt-0">
         <h1 class="text-2xl md:text-4xl font-bold text-gray-300 dark:text-gray-400">
-          Inception <span class="text-xl">(2010-07-16)</span>
+          {{tvSeriesDetails.original_name}} <span class="text-xl">({{tvSeriesDetails.first_air_date}} - {{tvSeriesDetails.last_air_date}})</span>
         </h1>
 
-        <p class="text-sm md:text-base text-gray-300 dark:text-gray-400">Director: John</p>
-        <span class="text-sm md:text-base text-gray-300 dark:text-gray-400">Action, Science Fiction</span>
+        <p class="text-sm md:text-base text-gray-300 dark:text-gray-400">Episode: {{tvSeriesDetails.number_of_episodes}}</p>
+        <p class="text-sm md:text-base text-gray-300 dark:text-gray-400">Seasons: {{tvSeriesDetails.number_of_seasons}}</p>
+        <span class="text-sm md:text-base text-gray-300 dark:text-gray-400">
+            <ng-container *ngFor="let genre of tvSeriesDetails?.genres; let last = last">
+    {{ genre.name }}<span *ngIf="!last">, </span>
+  </ng-container>
+        </span>
 
         <p class="text-sm md:text-base text-gray-300 dark:text-gray-400">
-          148 min | 2010-07-16 | Your mind is the scene of the crime.
+          {{tvSeriesDetails.episode_run_time[0]}} min | {{tvSeriesDetails.type}} | {{tvSeriesDetails.tagline}}
         </p>
 
-        <p class="text-yellow-500 font-semibold text-lg">⭐ 82.5</p>
+        <p class="text-yellow-500 font-semibold text-lg">⭐ {{tvSeriesDetails?.vote_average}} / 10</p>
 
         <!-- Buttons -->
         <div class="flex flex-wrap justify-center md:justify-start gap-3 mt-2">
@@ -74,89 +83,91 @@
   <div class="px-4 md:px-20 py-6">
     <h2 class="text-xl font-semibold mb-2">Overview</h2>
     <p class="text-gray-800 dark:text-gray-300 mb-4 text-justify">
-      A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of
-      planting an idea.
+      {{tvSeriesDetails.overview || 'No overview available for this series.'}}
     </p>
   </div>
 
   <!-- Credits -->
-  <div class="px-4 md:px-20 py-4">
-    <h2 class="text-xl font-semibold mb-4">Cast</h2>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+<!--  <div class="px-4 md:px-20 py-4">-->
+<!--    <h2 class="text-xl font-semibold mb-4">Cast</h2>-->
+<!--    <div class="flex overflow-x-auto gap-6 scroll-smooth pb-4">-->
 
-      <!-- Cast Member Card -->
-      <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">
-        <img
-          src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"
-          alt="Leonardo DiCaprio"
-          class="mx-auto  object-cover mb-3"
-        />
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Leonardo DiCaprio</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300">as Cobb</p>
-      </div>
+<!--      &lt;!&ndash; Cast Member Card &ndash;&gt;-->
+<!--      <div class="min-w-[250px]  bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4" *ngFor="let cast of tvSeriesDetailss?.cast">-->
+<!--        <img-->
+<!--          [src]="cast.profile_path ? 'https://image.tmdb.org/t/p/w500' + cast.profile_path : '/assets/not-ffound-image.jpg'"-->
+<!--          alt="{{ cast.name }}"-->
+<!--          class="mx-auto object-cover mb-3"-->
+<!--        />-->
 
-      <!-- Cast Member Card -->
-      <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">
-        <img
-          src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"
-          alt="Leonardo DiCaprio"
-          class="mx-auto  object-cover mb-3"
-        />
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Leonardo DiCaprio</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300">as Cobb</p>
-      </div>
-
-    </div>
-  </div>
+<!--        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">{{cast?.original_name}}</h3>-->
+<!--        <p class="text-sm text-gray-600 dark:text-gray-300">{{cast?.character}}</p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
 
 
-  <div class="px-4 md:px-20 py-4">
-    <h2 class="text-xl font-semibold mb-4">Crew</h2>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+<!--  <div class="px-4 md:px-20 py-4">-->
+<!--    <h2 class="text-xl font-semibold mb-4">Cast</h2>-->
+<!--    <div class="flex overflow-x-auto gap-6 scroll-smooth pb-4">-->
 
-      <!-- Crew Member Card -->
-      <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">
-        <img
-          src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"
-          alt="Leonardo DiCaprio"
-          class="mx-auto  object-cover mb-3"
-        />
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Leonardo DiCaprio</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300">as Cobb</p>
-      </div>
+<!--      &lt;!&ndash; Cast Member Card &ndash;&gt;-->
+<!--      <div class="min-w-[250px]  bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4" *ngFor="let cast of movieCredits?.cast">-->
+<!--        <img-->
+<!--          [src]="cast.profile_path ? 'https://image.tmdb.org/t/p/w500' + cast.profile_path : '/assets/not-ffound-image.jpg'"-->
+<!--          alt="{{ cast.name }}"-->
+<!--          class="mx-auto object-cover mb-3"-->
+<!--        />-->
 
+<!--        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">{{cast?.original_name}}</h3>-->
+<!--        <p class="text-sm text-gray-600 dark:text-gray-300">{{cast?.character}}</p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
 
-      <!-- Cast Member Card -->
-      <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">
-        <img
-          src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"
-          alt="Leonardo DiCaprio"
-          class="mx-auto  object-cover mb-3"
-        />
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Leonardo DiCaprio</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300">as Cobb</p>
-      </div>
+<!--  <div class="px-4 md:px-20 py-4">-->
+<!--    <h2 class="text-xl font-semibold mb-4">Crew</h2>-->
+<!--    <div class="flex overflow-x-auto gap-6 scroll-smooth pb-4">-->
 
-    </div>
-  </div>
+<!--      &lt;!&ndash; Crew Member Card &ndash;&gt;-->
+<!--      <div class="min-w-[250px] bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4" *ngFor="let crew of movieCredits?.crew">-->
+<!--        <img-->
+<!--          [src]="crew.profile_path ? 'https://image.tmdb.org/t/p/w500' + crew.profile_path : '/assets/not-ffound-image.jpg'"-->
+<!--          alt="{{ crew.name }}"-->
+<!--          class="mx-auto object-cover mb-3"-->
+<!--        />-->
+<!--        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Name: {{crew.original_name}}</h3>-->
+<!--        <p class="text-sm text-gray-600 dark:text-gray-300">Department:  {{crew?.department}}</p>-->
+<!--        <p class="text-sm text-gray-600 dark:text-gray-300">Job:  {{crew?.job}}</p>-->
+<!--      </div>-->
+
+<!--    </div>-->
+<!--  </div>-->
+
 
   <!-- Companies -->
   <div class="px-4 md:px-20 py-4">
-    <h2 class="text-xl font-semibold mb-4">Production Company</h2>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+    <h2 class="text-xl font-semibold mb-4">Production Companies</h2>
 
-      <!-- company Card -->
-      <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">
+    <!-- Horizontal Scroll Container -->
+    <div class="flex overflow-x-auto gap-6 scroll-smooth pb-4">
+      <!-- Company Card -->
+      <div
+        *ngFor="let company of tvSeriesDetails?.production_companies"
+        class="min-w-[250px] bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4"
+      >
         <img
-          src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"
-          alt="Leonardo DiCaprio"
-          class="mx-auto  object-cover mb-3"
+          [src]="company.logo_path ? 'https://image.tmdb.org/t/p/w500' + company.logo_path : 'assets/no-logo.png'"
+          alt="{{ company.name }}"
+          class="mb-3 w-[200px] h-[200px] object-contain mx-auto"
         />
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Leonardo DiCaprio</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300">as Cobb</p>
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">
+          {{ company.name }}
+        </h3>
       </div>
     </div>
   </div>
+
 
   <!-- Trailer Modal (optional static view) -->
 <!--  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">-->
@@ -177,118 +188,4 @@
 <!--    </div>-->
 <!--  </div>-->
 
-
-  <!-- Bottom Tabs Section -->
-  <div class="px-4 md:px-20 py-6 mt-10">
-    <h2 class="text-xl font-semibold mb-4">Media</h2>
-
-    <!-- Main Tabs -->
-    <div class="border-b border-gray-300 dark:border-gray-700 mb-4">
-      <ul class="flex flex-wrap text-sm font-medium text-center" id="tabs">
-        <li class="mr-2">
-          <button class="tab-btn px-4 py-2 rounded-t-lg active-tab" data-tab="logos">Logos</button>
-        </li>
-        <li>
-          <button class="tab-btn px-4 py-2 rounded-t-lg" data-tab="backdrops">Backdrops</button>
-        </li>
-        <li>
-          <button class="tab-btn px-4 py-2 rounded-t-lg" data-tab="posters">Posters</button>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Tab Contents -->
-    <!-- Logos Tab -->
-    <div id="logos" class="tab-content block">
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-        <!-- Logos -->
-        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">
-          <img
-            src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"
-            alt="Logo"
-            class="mx-auto  object-cover mb-3"
-          />
-          <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Logo 1</h3>
-        </div>
-
-        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">
-          <img
-            src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"
-            alt="Logo"
-            class="mx-auto  object-cover mb-3"
-          />
-          <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Logo 2</h3>
-        </div>
-      </div>
-    </div>
-
-    <!-- Backdrops Tab -->
-    <div id="backdrops" class="tab-content hidden">
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-        <!-- Images -->
-      </div>
-    </div>
-
-    <!-- Posters Tab -->
-    <div id="posters" class="tab-content hidden">
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-        <!-- Images -->
-        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">
-          <img
-            src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"
-            alt="Poster"
-            class="mx-auto  object-cover mb-3"
-          />
-          <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Poster 1</h3>
-        </div>
-
-        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md text-center p-4">
-          <img
-            src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/bYzbEYm5QvxywhUTWXhF7d2fEnm.jpg"
-            alt="Poster"
-            class="mx-auto  object-cover mb-3"
-          />
-          <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Poster 2</h3>
-        </div>
-      </div>
-    </div>
 </div>
-</div>
-
-<!-- Tabs Script -->
-  <script>
-    document.querySelectorAll(".tab-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const tab = btn.getAttribute("data-tab");
-
-        // Hide all tab contents
-        document.querySelectorAll(".tab-content").forEach((el) => {
-          el.classList.add("hidden");
-        });
-
-        // Remove active styles from all buttons
-        document.querySelectorAll(".tab-btn").forEach((el) => {
-          el.classList.remove("active-tab", "border-b-2", "border-blue-500", "text-blue-600");
-        });
-
-        // Show selected tab content
-        document.getElementById(tab).classList.remove("hidden");
-
-        // Add active styles to clicked button
-        btn.classList.add("active-tab", "border-b-2", "border-blue-500", "text-blue-600");
-      });
-    });
-  </script>
-
-
-
-<!-- Tabs Style -->
-<style>
-  .tab-btn.active-tab {
-    @apply border-b-2 border-blue-600 text-blue-600 dark:text-blue-400;
-  }
-
-  .sub-tab-btn.active-sub-tab {
-    @apply bg-blue-500 text-white;
-  }
-</style>
