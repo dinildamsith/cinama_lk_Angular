@@ -6,10 +6,11 @@ import {TvShowsService} from '../../services/tv-shows.service';
 @Component({
   selector: 'app-tv-shows',
   templateUrl: './tvShows.component.html',
-  imports: [
-    NgForOf,
-    TvShowsCardComponent,
-  ],
+    imports: [
+        NgForOf,
+        TvShowsCardComponent,
+        NgIf,
+    ],
   standalone: true
 })
 
