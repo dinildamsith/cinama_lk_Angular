@@ -23,4 +23,4 @@ export const TV_SERIES_IMAGES_GET_URL = "tv/"
 
 
 //-----------------------PEOPLE-----------------------
-export const POPULAR_PEOPLE_GET_URL = "person/popular?language=en-US&page=1"
+export const POPULAR_PEOPLE_GET_URL = "person/popular?language=en-US&page="

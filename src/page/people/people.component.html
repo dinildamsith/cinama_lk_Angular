@@ -1,6 +1,5 @@
 <div class="min-h-screen bg-white dark:bg-gray-900 text-gray-300 p-5">
-
-  <!-- Main Layout -->
+  <!-- Grid of people -->
   <div class="flex flex-wrap gap-6">
     <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       <app-people-card
@@ -10,5 +9,26 @@
         [title]="people.popularity"
       />
     </div>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="flex justify-center items-center mt-8 space-x-4">
+    <button
+      class="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50"
+      (click)="prevPage()"
+      [disabled]="currentPage === 1"
+    >
+      Prev
+    </button>
+    <span class="text-lg text-gray-800 dark:text-gray-200">
+      Page {{ currentPage }} of {{ totalPages }}
+    </span>
+    <button
+      class="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50"
+      (click)="nextPage()"
+      [disabled]="currentPage === totalPages"
+    >
+      Next
+    </button>
   </div>
 </div>

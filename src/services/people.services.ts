@@ -9,8 +9,8 @@ export class PeopleServices {
 
   constructor(private httpServices: HttpService) {}
 
-  getPopularPeople() {
-    return this.httpServices.get(POPULAR_PEOPLE_GET_URL, true);
+  getPopularPeople(pageCount:number) {
+    return this.httpServices.get(POPULAR_PEOPLE_GET_URL + pageCount, true);
   }
 
 }
