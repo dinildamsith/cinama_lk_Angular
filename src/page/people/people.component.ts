@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
-import {MovieCardComponent} from '../../components/movieCard/movie-card.component';
 import {PeopleCardComponent} from '../../components/peopleCard/people-card.component';
+import {PeopleServices} from '../../services/people.services';
 
 @Component({
   selector: 'app-people',
@@ -15,26 +15,28 @@ import {PeopleCardComponent} from '../../components/peopleCard/people-card.compo
 
 export class PeopleComponent{
 
+  constructor(private peopleService : PeopleServices) {}
 
-  peoples = [
-    {
-      image: 'https://images.ntpl.org.uk/hppa-zooms/00000000696/cms_pcf_959529.bro',
-      name: 'John Doe',
-      title: 'Actor',
-      id: 1
-    },
-    {
-      image: 'https://images.ntpl.org.uk/hppa-zooms/00000000696/cms_pcf_959529.bro',
-      name: 'Jane Smith',
-      title: 'Director',
-      id: 2
-    },
-    {
-      image: 'https://images.ntpl.org.uk/hppa-zooms/00000000696/cms_pcf_959529.bro',
-      name: 'Alice Johnson',
-      title: 'Producer',
-      id: 3
-    }
-  ]
+  loading = false
+  peoples : any = []
+
+  getPeoples() {
+    this.loading = true;
+    this.peopleService.getPopularPeople().subscribe({
+      next: (data: any) => {
+        console.log('Popular People:', data.results);
+        this.peoples = data.results;
+        this.loading = false;
+      },
+      error: (error) => {
+        console.error('Error fetching popular people:', error);
+        this.loading = false;
+      }
+    });
+  }
+
+  ngOnInit() {
+    this.getPeoples();
+  }
 
 }

@@ -20,3 +20,7 @@ export const SELECTED_TV_SHOW_DETAILS_GET_URL = "tv/"
 export const TV_SERIES_CREDITS_GET_URL = "tv/"
 export const TV_SERIES_VIDEOS_GET_URL = "tv/"
 export const TV_SERIES_IMAGES_GET_URL = "tv/"
+
+
+//-----------------------PEOPLE-----------------------
+export const POPULAR_PEOPLE_GET_URL = "person/popular?language=en-US&page=1"
