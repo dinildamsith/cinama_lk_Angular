@@ -8,7 +8,8 @@ import {PeopleServices} from '../../services/people.services';
   templateUrl: './people.component.html',
   imports: [
     NgForOf,
-    PeopleCardComponent
+    PeopleCardComponent,
+    NgIf
   ],
   standalone: true
 })
