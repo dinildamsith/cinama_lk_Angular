@@ -36,10 +36,9 @@
         <div class="mb-4">
           <label for="genre" class="block text-sm text-gray-700 dark:text-gray-300">Genre</label>
           <select id="genre" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
-            <option>Action</option>
-            <option>Drama</option>
-            <option>Comedy</option>
-            <option>Thriller</option>
+            <option *ngFor="let genres of allGenres" [value]="genres.id">
+              {{genres.name}}
+            </option>
           </select>
         </div>
 

@@ -33,12 +33,31 @@ export class MovieComponent implements OnInit {
     { key: 'top_rated', label: 'Top Rated' }
   ];
 
+  allGenres: any[] = [];
+
   loading: boolean = false;
   movies: any[] = [];
   selectedCategory: string = ''
 
   // Index to track the current banner being displayed
   currentBannerIndex = 0;
+
+  // Movie Genres get
+  getMovieGenres() {
+    this.loading = true;
+
+    this.movieServices.getMovieGenres().subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.allGenres = res.genres;
+        this.loading = false; // ✅ move here
+      },
+      error: (err) => {
+        console.error('Error fetching movie genres:', err);
+        this.loading = false; // ✅ also handle failure
+      }
+    });
+  }
 
   // Function to fetch all now playing movies
   getAllNowPlayingMovies() {
@@ -137,6 +156,9 @@ export class MovieComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    // genres get
+    this.getMovieGenres()
 
     // Fetch all now playing movies when the component initializes
     this.getPopularMovies()
