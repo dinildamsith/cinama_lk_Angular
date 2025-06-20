@@ -9,6 +9,7 @@ export const SELECTED_MOVIE_CREDITS_GET_URL = "movie/"
 export const SELECTED_MOVIE_VIDEOS_GET_URL = "movie/"
 export const SELECTED_MOVIE_IMAGES_GET_URL = "movie/"
 export const MOVIES_GENRES_GET_URL = "genre/movie/list?language=en-US"
+export const MOVIES_SEARCH_GET_URL = "discover/movie?language=en-US"
 
 
 //-----------------------TV SHOWS-----------------------

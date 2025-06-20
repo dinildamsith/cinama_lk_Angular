@@ -26,6 +26,7 @@ export class MovieComponent implements OnInit {
     'assets/baner-3.jpg',
   ];
 
+  // Array to hold movie categories
   movieCategories = [
     { key: 'popular', label: 'Popular' },
     { key: 'now_playing', label: 'Now Playing' },
@@ -33,7 +34,13 @@ export class MovieComponent implements OnInit {
     { key: 'top_rated', label: 'Top Rated' }
   ];
 
+  // Array to hold all movie genres
   allGenres: any[] = [];
+
+  // search body
+  filter : any = {
+    genre: '',
+  }
 
   loading: boolean = false;
   movies: any[] = [];
@@ -155,9 +162,35 @@ export class MovieComponent implements OnInit {
     });
   }
 
+  //----setter filter data
+  setGenre(event: any) {
+    this.filter.genre = event.target.value;
+    console.log('Selected genre:', this.filter.genre);
+  }
+
   // serch handel
   searchMovie() {
-    alert("click")
+    this.loading = true;
+
+    // Call the searchMovies method from the movieServices
+    this.movieServices.searchMovies(this.filter).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.movies = res.results.map((movie: any) => ({
+          id: movie.id,
+          title: movie.title,
+          year: movie.release_date.split('-')[0],
+          image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          rating: movie.vote_average,
+          adult: movie.adult,
+        }));
+        this.loading = false; // ✅ move here
+      },
+      error: (err) => {
+        console.error('Error searching movies:', err);
+        this.loading = false; // ✅ also handle failure
+      }
+    });
   }
 
   ngOnInit(): void {

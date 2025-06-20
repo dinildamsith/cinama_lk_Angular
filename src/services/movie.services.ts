@@ -1,7 +1,7 @@
 import {Injectable, OnInit} from '@angular/core';
 import {HttpService} from './http.service';
 import {
-  MOVIES_GENRES_GET_URL,
+  MOVIES_GENRES_GET_URL, MOVIES_SEARCH_GET_URL,
   NOW_PLAYING_ALL_MOVIES_GET_URL,
   POPULAR_ALL_MOVIES_GET_URL,
   SELECTED_MOVIE_CREDITS_GET_URL,
@@ -52,6 +52,11 @@ export class MovieServices{
 
   getMovieGenres() {
     return this.httpServices.get(MOVIES_GENRES_GET_URL, true);
+  }
+
+  searchMovies(filter: any) {
+    let url = MOVIES_SEARCH_GET_URL + `&with_genres=${filter.genre}&sort_by=popularity.desc&page=1`;
+    return this.httpServices.get(url, true);
   }
 
 }
