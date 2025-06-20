@@ -155,6 +155,11 @@ export class MovieComponent implements OnInit {
     });
   }
 
+  // serch handel
+  searchMovie() {
+    alert("click")
+  }
+
   ngOnInit(): void {
 
     // genres get
