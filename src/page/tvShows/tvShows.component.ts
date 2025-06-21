@@ -37,6 +37,12 @@ export class TvShowsComponent implements OnInit {
   ];
   currentBannerIndex = 0;
 
+  filterExpanded = true;
+
+  toggleFilter() {
+    this.filterExpanded = !this.filterExpanded;
+  }
+
   setGenre(event: any) {
     this.filter.genre = event.target.value;
   }
