@@ -23,12 +23,30 @@ export class TvShowsComponent implements OnInit {
   loading = false
   allTvSeries: any = [];
 
+  allGenres: any = []
+
   banners: string[] = [
     'assets/baner-1.jpg',
     'assets/baner-2.jpg',
     'assets/baner-3.jpg',
   ];
   currentBannerIndex = 0;
+
+  //------------get all genres
+  getAllGenres() {
+    this.loading = true;
+    this.tvShowsServices.getTvSeriesGenres().subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.allGenres = res.genres;
+        this.loading = false; // ✅ move here
+      },
+      error: (err) => {
+        console.error(err);
+        this.loading = false;
+      }
+    });
+  }
 
   //------------get all popular tv shows
   getAllPopularTvShows() {
@@ -123,6 +141,7 @@ export class TvShowsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAllGenres();
     this.getAllPopularTvShows()
     setInterval(() => {
       this.currentBannerIndex = (this.currentBannerIndex + 1) % this.banners.length;

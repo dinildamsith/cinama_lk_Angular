@@ -39,30 +39,35 @@
         <div class="mb-4">
           <label for="genre" class="block text-sm text-gray-700 dark:text-gray-300">Genre</label>
           <select id="genre" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
-            <option>Action</option>
-            <option>Drama</option>
-            <option>Comedy</option>
-            <option>Thriller</option>
+            <option *ngFor="let genre of allGenres" [value]="genre.id">
+              {{ genre.name }}
+            </option>
           </select>
         </div>
 
-        <div class="mb-4">
-          <label for="rating" class="block text-sm text-gray-700 dark:text-gray-300">Rating</label>
-          <select id="rating" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
-            <option>All Ratings</option>
-            <option>G</option>
-            <option>PG</option>
-            <option>R</option>
-          </select>
-        </div>
+<!--        <div class="mb-4">-->
+<!--          <label for="rating" class="block text-sm text-gray-700 dark:text-gray-300">Rating</label>-->
+<!--          <select id="rating" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">-->
+<!--            <option>All Ratings</option>-->
+<!--            <option>G</option>-->
+<!--            <option>PG</option>-->
+<!--            <option>R</option>-->
+<!--          </select>-->
+<!--        </div>-->
+
+<!--        <div class="mb-4">-->
+<!--          <label for="year" class="block text-sm text-gray-700 dark:text-gray-300">Year</label>-->
+<!--          <select id="year" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">-->
+<!--            <option>2023</option>-->
+<!--            <option>2022</option>-->
+<!--            <option>2021</option>-->
+<!--          </select>-->
+<!--        </div>-->
 
         <div class="mb-4">
-          <label for="year" class="block text-sm text-gray-700 dark:text-gray-300">Year</label>
-          <select id="year" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
-            <option>2023</option>
-            <option>2022</option>
-            <option>2021</option>
-          </select>
+          <button type="button"  class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+            Search
+          </button>
         </div>
       </form>
     </div>

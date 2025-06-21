@@ -3,8 +3,13 @@ import {Injectable} from '@angular/core';
 import {
   AIRING_TODAY_ALL_TV_SHOWS_GET_URL,
   ON_THE_AIR_ALL_TV_SHOWS_GET_URL,
-  POPULAR_ALL_TV_SHOWS_GET_URL, SELECTED_TV_SHOW_DETAILS_GET_URL,
-  TOP_RATED_ALL_TV_SHOWS_GET_URL, TV_SERIES_CREDITS_GET_URL, TV_SERIES_IMAGES_GET_URL, TV_SERIES_VIDEOS_GET_URL
+  POPULAR_ALL_TV_SHOWS_GET_URL,
+  SELECTED_TV_SHOW_DETAILS_GET_URL,
+  TOP_RATED_ALL_TV_SHOWS_GET_URL,
+  TV_SERIES_CREDITS_GET_URL,
+  TV_SERIES_GENRES_GET_URL,
+  TV_SERIES_IMAGES_GET_URL,
+  TV_SERIES_VIDEOS_GET_URL
 } from './endpoint.list';
 
 @Injectable({providedIn: 'root' })
@@ -42,5 +47,9 @@ export class TvShowsService {
 
   getTvShowImages(id: number) {
     return this.httpServices.get(TV_SERIES_IMAGES_GET_URL + id + '/images', true);
+  }
+
+  getTvSeriesGenres() {
+    return this.httpServices.get(TV_SERIES_GENRES_GET_URL, true);
   }
 }
