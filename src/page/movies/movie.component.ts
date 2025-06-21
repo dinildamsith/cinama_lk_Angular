@@ -49,6 +49,13 @@ export class MovieComponent implements OnInit {
   // Index to track the current banner being displayed
   currentBannerIndex = 0;
 
+  filterExpanded = true;
+
+  toggleFilter() {
+    this.filterExpanded = !this.filterExpanded;
+  }
+
+
   // Movie Genres get
   getMovieGenres() {
     this.loading = true;
