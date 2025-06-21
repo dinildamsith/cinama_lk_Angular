@@ -18,4 +18,5 @@ export class MovieCardComponent {
   @Input() title: string = '';
   @Input() image: string = '';
   @Input() rating: number = 0;
+  @Input() adult: boolean = false;
 }
