@@ -8,7 +8,7 @@ import {
   TOP_RATED_ALL_TV_SHOWS_GET_URL,
   TV_SERIES_CREDITS_GET_URL,
   TV_SERIES_GENRES_GET_URL,
-  TV_SERIES_IMAGES_GET_URL,
+  TV_SERIES_IMAGES_GET_URL, TV_SERIES_SEARCH_GET_URL,
   TV_SERIES_VIDEOS_GET_URL
 } from './endpoint.list';
 
@@ -51,5 +51,10 @@ export class TvShowsService {
 
   getTvSeriesGenres() {
     return this.httpServices.get(TV_SERIES_GENRES_GET_URL, true);
+  }
+
+  searchTvSeries(filter: any) {
+    let url = TV_SERIES_SEARCH_GET_URL + `&with_genres=${filter.genre}&sort_by=popularity.desc&page=1`;
+    return this.httpServices.get(url, true);
   }
 }

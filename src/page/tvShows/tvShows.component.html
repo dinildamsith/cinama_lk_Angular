@@ -38,7 +38,7 @@
 
         <div class="mb-4">
           <label for="genre" class="block text-sm text-gray-700 dark:text-gray-300">Genre</label>
-          <select id="genre" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
+          <select id="genre" (change)="setGenre($event)" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
             <option *ngFor="let genre of allGenres" [value]="genre.id">
               {{ genre.name }}
             </option>
@@ -65,7 +65,7 @@
 <!--        </div>-->
 
         <div class="mb-4">
-          <button type="button"  class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+          <button type="button" (click)="searchTvShows()"  class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
             Search
           </button>
         </div>
