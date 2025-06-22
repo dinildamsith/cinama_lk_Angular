@@ -2,15 +2,17 @@ import {Component, OnInit} from '@angular/core';
 import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
 import {TvShowsCardComponent} from '../../components/tvShowsCard/tvShows-card.component';
 import {TvShowsService} from '../../services/tv-shows.service';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-tv-shows',
   templateUrl: './tvShows.component.html',
-    imports: [
-        NgForOf,
-        TvShowsCardComponent,
-        NgIf,
-    ],
+  imports: [
+    NgForOf,
+    TvShowsCardComponent,
+    NgIf,
+    FormsModule,
+  ],
   standalone: true
 })
 
@@ -67,6 +69,30 @@ export class TvShowsComponent implements OnInit {
   searchTvShows() {
     this.loading = true;
     this.tvShowsServices.searchTvSeries(this.filter).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.allTvSeries = res.results.map((movie: any) => ({
+          id: movie.id,
+          title: movie.name,
+          year: movie.first_air_date.split('-')[0],
+          image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          rating: movie.vote_average,
+          adult: movie.adult,
+        }));
+        this.loading = false; // ✅ move here
+      },
+      error: (err) => {
+        console.error(err);
+        this.loading = false;
+      }
+    });
+  }
+
+  searchQuery = '';
+  // key word through search
+  searchTvShowsByKeyword() {
+    this.loading = true;
+    this.tvShowsServices.searchTvSeriesByKeyword(this.searchQuery).subscribe({
       next: (res: any) => {
         console.log(res);
         this.allTvSeries = res.results.map((movie: any) => ({

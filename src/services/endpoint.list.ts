@@ -25,6 +25,7 @@ export const TV_SERIES_VIDEOS_GET_URL = "tv/"
 export const TV_SERIES_IMAGES_GET_URL = "tv/"
 export const TV_SERIES_GENRES_GET_URL = "genre/tv/list?language=en-US"
 export const TV_SERIES_SEARCH_GET_URL = "discover/tv?language=en-US"
+export const TV_SERIES_SEARCH_BY_KEYWORD_GET_URL = "search/tv?language=en-US"
 
 
 //-----------------------PEOPLE-----------------------
