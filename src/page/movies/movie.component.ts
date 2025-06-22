@@ -11,6 +11,7 @@ import {FormsModule} from '@angular/forms';
     NgForOf,
     MovieCardComponent,
     NgIf,
+    FormsModule,
   ],
   standalone: true
 })
@@ -195,6 +196,32 @@ export class MovieComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error searching movies:', err);
+        this.loading = false; // ✅ also handle failure
+      }
+    });
+  }
+
+  // keyword search
+  searchQuery: string = '';
+  searchMovieByKeyword(event:any) {
+    this.loading = true;
+
+    // Call the searchMoviesByKeyword method from the movieServices
+    this.movieServices.searchMoviesByKeyword(this.searchQuery).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.movies = res.results.map((movie: any) => ({
+          id: movie.id,
+          title: movie.title,
+          year: movie.release_date.split('-')[0],
+          image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          rating: movie.vote_average,
+          adult: movie.adult,
+        }));
+        this.loading = false; // ✅ move here
+      },
+      error: (err) => {
+        console.error('Error searching movies by keyword:', err);
         this.loading = false; // ✅ also handle failure
       }
     });
