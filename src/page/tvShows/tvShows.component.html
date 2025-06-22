@@ -35,6 +35,17 @@
       <form>
 
         <div class="mb-4">
+          <label for="search" class="block text-sm text-gray-700 dark:text-gray-300">Search Movies</label>
+          <input
+            id="search"
+            type="text"
+            placeholder="Enter movie name"
+            class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white"
+          />
+        </div>
+
+
+        <div class="mb-4">
           <label for="category" class="block text-sm text-gray-700 dark:text-gray-300">Category</label>
           <select id="category"  (change)="onCategoryChange($event)"  class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
             <option value="popular">Popular</option>
@@ -44,6 +55,7 @@
           </select>
         </div>
 
+        <hr>
 
         <div class="mb-4">
           <label for="genre" class="block text-sm text-gray-700 dark:text-gray-300">Genre</label>
