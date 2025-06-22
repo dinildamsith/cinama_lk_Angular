@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  tmdbToken: process.env['NG_APP_TMDB_TOKEN'] || ''
+  tmdbToken: 'NG_APP_TMDB_TOKEN'
 };
