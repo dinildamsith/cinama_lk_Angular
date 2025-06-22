@@ -13,7 +13,7 @@ export class HttpService {
   private createHeaders(auth: boolean = false): HttpHeaders {
     let headers = new HttpHeaders();
     if (auth) {
-      const token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NjEzNmZkNjc2MTNlY2RiYjY4MDI2MzdmNjIzZWFmOCIsIm5iZiI6MTc0NjcyODQ2Ny4yNzgsInN1YiI6IjY4MWNmNjEzMzhkNTEyZWZhZGIxY2FhNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.OPQgXPjc5CbMOYxxfZ1aYimZCbGbfpwmavzep_tDvd0"
+      const token = "your_api_token_here"; // Replace with your actual token retrieval logic
       if (token) {
         headers = headers.set('Authorization', `Bearer ${token}`);
       }
