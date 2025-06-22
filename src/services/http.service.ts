@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {environment} from '../../environment';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class HttpService {
   private createHeaders(auth: boolean = false): HttpHeaders {
     let headers = new HttpHeaders();
     if (auth) {
-      const token = "your_api_token_here"; // Replace with your actual token retrieval logic
+      const token = environment.tmdbToken;
       if (token) {
         headers = headers.set('Authorization', `Bearer ${token}`);
       }
