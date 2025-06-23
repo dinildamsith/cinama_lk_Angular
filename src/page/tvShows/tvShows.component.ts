@@ -39,7 +39,7 @@ export class TvShowsComponent implements OnInit {
   ];
   currentBannerIndex = 0;
 
-  filterExpanded = true;
+  filterExpanded = false;
 
   toggleFilter() {
     this.filterExpanded = !this.filterExpanded;

@@ -50,7 +50,7 @@ export class MovieComponent implements OnInit {
   // Index to track the current banner being displayed
   currentBannerIndex = 0;
 
-  filterExpanded = true;
+  filterExpanded = false;
 
   toggleFilter() {
     this.filterExpanded = !this.filterExpanded;
