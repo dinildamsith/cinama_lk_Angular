@@ -32,6 +32,7 @@ export class MovieDetailsComponent implements OnInit{
   movieVideos: any = {}
   movieTrailer: any = {}
   movieImages: any = {}
+  movieReviews: any = {}
 
 
 
@@ -59,6 +60,22 @@ export class MovieDetailsComponent implements OnInit{
       next : (res : any) => {
         console.log(res)
         this.movieCredits = res
+        this.loading = false
+      }, error: (err: any) => {
+        console.log(err)
+        this.loading = false
+      }
+    })
+  }
+
+  //------------selected movie reviews get by id
+  selectedMovieReviewsGet(movieId: any){
+    this.loading = true
+
+    this.movieService.getMovieReviews(movieId).subscribe({
+      next : (res : any) => {
+        console.log(res)
+        this.movieReviews = res
         this.loading = false
       }, error: (err: any) => {
         console.log(err)
@@ -119,6 +136,7 @@ export class MovieDetailsComponent implements OnInit{
     this.selectedMovieCreditsGet(movieId) //------------get selected movie credits by id
     this.selectedMovieVideosGet(movieId) //------------get selected movie videos by id
     this.selectedMovieImagesGet(movieId) //------------get selected movie images by id
+    this.selectedMovieReviewsGet(movieId) //------------get selected movie reviews by id
   }
 
   //------------open trailer

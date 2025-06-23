@@ -1,6 +1,7 @@
 import {Injectable, OnInit} from '@angular/core';
 import {HttpService} from './http.service';
 import {
+  MOVIE_REVIEWS_GET_URL,
   MOVIES_GENRES_GET_URL, MOVIES_SEARCH_BY_KEYWORD_GET_URL, MOVIES_SEARCH_GET_URL,
   NOW_PLAYING_ALL_MOVIES_GET_URL,
   POPULAR_ALL_MOVIES_GET_URL,
@@ -48,6 +49,10 @@ export class MovieServices{
 
   getMovieImages(movieId:any) {
     return this.httpServices.get(SELECTED_MOVIE_IMAGES_GET_URL + movieId + "/images", true)
+  }
+
+  getMovieReviews(movieId:any) {
+    return this.httpServices.get(MOVIE_REVIEWS_GET_URL + movieId + "/reviews?language=en-US&page=1", true)
   }
 
   getMovieGenres() {

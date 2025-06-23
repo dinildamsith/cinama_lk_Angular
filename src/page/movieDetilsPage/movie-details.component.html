@@ -261,19 +261,19 @@
   <div class="px-4 md:px-20 py-4">
     <h2 class="text-xl font-semibold mb-4">Reviews</h2>
 
-    <!-- Tab content -->
-    <div class="p-4 h-[450px]  bg-gray-100 dark:bg-gray-800 rounded">
-      <!-- Horizontal Scroll Container -->
-      <div class="flex overflow-y-auto gap-6 scroll-smooth pb-4">
+    <!-- Tab content with fixed height -->
+    <div class="h-[450px] bg-gray-100 dark:bg-gray-800 rounded">
+
+      <!-- Scrollable container with vertical scroll -->
+      <div class="p-4 overflow-y-auto h-full pr-2 space-y-4 scroll-smooth">
         <div
           *ngFor="let review of movieReviews?.results"
-          class="min-w-[380px] bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md p-4 mb-4"
+          class="min-w-[380px] bg-white dark:bg-gray-900 rounded-lg shadow-md p-4"
         >
           <!-- Author Info -->
           <div class="flex items-center mb-4">
             <img
-              *ngIf="review?.author_details?.avatar_path"
-              [src]="'https://image.tmdb.org/t/p/w500' + review.author_details.avatar_path"
+              [src]="review?.author_details?.avatar_path ? 'https://image.tmdb.org/t/p/w500' + review.author_details.avatar_path : 'assets/default-avatar.jpg'"
               alt="Author Avatar"
               class="w-10 h-10 rounded-full mr-3"
             />
@@ -305,10 +305,10 @@
             Read Full Review
           </a>
         </div>
-
       </div>
     </div>
   </div>
+
 
 
   <!-- Trailer Modal (optional static view) -->
