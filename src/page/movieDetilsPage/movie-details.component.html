@@ -257,6 +257,60 @@
   </div>
 
 
+  <!-- Review -->
+  <div class="px-4 md:px-20 py-4">
+    <h2 class="text-xl font-semibold mb-4">Reviews</h2>
+
+    <!-- Tab content -->
+    <div class="p-4 h-[450px]  bg-gray-100 dark:bg-gray-800 rounded">
+      <!-- Horizontal Scroll Container -->
+      <div class="flex overflow-y-auto gap-6 scroll-smooth pb-4">
+        <div
+          *ngFor="let review of movieReviews?.results"
+          class="min-w-[380px] bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md p-4 mb-4"
+        >
+          <!-- Author Info -->
+          <div class="flex items-center mb-4">
+            <img
+              *ngIf="review?.author_details?.avatar_path"
+              [src]="'https://image.tmdb.org/t/p/w500' + review.author_details.avatar_path"
+              alt="Author Avatar"
+              class="w-10 h-10 rounded-full mr-3"
+            />
+            <div class="text-left">
+              <h3 class="text-lg font-semibold text-gray-800 dark:text-white">{{ review.author }}</h3>
+              <p class="text-xs text-gray-500 dark:text-gray-400">
+                {{ review.created_at | date: 'medium' }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Rating -->
+          <div *ngIf="review?.author_details?.rating !== null" class="text-yellow-500 text-sm mb-2">
+            Rating: {{ review.author_details.rating }} / 10
+          </div>
+
+          <!-- Review Content -->
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+            {{ review?.content }}
+          </p>
+
+          <!-- Link to Full Review -->
+          <a
+            *ngIf="review?.url"
+            [href]="review.url"
+            target="_blank"
+            class="text-blue-500 hover:underline text-sm"
+          >
+            Read Full Review
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
   <!-- Trailer Modal (optional static view) -->
   <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70"  *ngIf="isTrailerOpen">
     <div class="bg-white dark:bg-gray-800 p-4 rounded-lg w-[90%] max-w-2xl relative">

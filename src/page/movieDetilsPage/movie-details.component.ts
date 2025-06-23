@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MovieServices} from '../../services/movie.services';
 import {ActivatedRoute, NavigationEnd} from '@angular/router';
-import {NgClass, NgForOf, NgIf} from '@angular/common';
+import {DatePipe, NgClass, NgForOf, NgIf} from '@angular/common';
 import {filter} from 'rxjs';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
@@ -12,7 +12,8 @@ import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
   imports: [
     NgIf,
     NgForOf,
-    NgClass
+    NgClass,
+    DatePipe
   ],
 })
 
