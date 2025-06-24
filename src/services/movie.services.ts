@@ -17,8 +17,8 @@ export class MovieServices{
 
   constructor(private httpServices: HttpService) {}
 
-  getPopularMovies(){
-    return this.httpServices.get(POPULAR_ALL_MOVIES_GET_URL + 1, true);
+  getPopularMovies(pageCount: number) {
+    return this.httpServices.get(POPULAR_ALL_MOVIES_GET_URL + pageCount, true);
   }
 
   getAllNowPlayingMovies(){

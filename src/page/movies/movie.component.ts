@@ -52,6 +52,9 @@ export class MovieComponent implements OnInit {
 
   filterExpanded = false;
 
+  currentPage = 1;
+  totalPages = 1;
+
   toggleFilter() {
     this.filterExpanded = !this.filterExpanded;
   }
@@ -99,10 +102,10 @@ export class MovieComponent implements OnInit {
   }
 
   // Function to fetch popular movies
-  getPopularMovies() {
+  getPopularMovies(pageCount: any) {
     this.loading = true;
 
-    this.movieServices.getPopularMovies().subscribe({
+    this.movieServices.getPopularMovies(pageCount).subscribe({
       next: (res: any) => {
         console.log(res);
         this.movies = res.results.map((movie: any) => ({
@@ -113,6 +116,8 @@ export class MovieComponent implements OnInit {
           rating: movie.vote_average,
           adult: movie.adult,
         }));
+        this.currentPage = pageCount;
+        this.totalPages = res.total_pages;
         this.loading = false; // ✅ move here
       },
       error: (err) => {
@@ -233,7 +238,7 @@ export class MovieComponent implements OnInit {
     this.getMovieGenres()
 
     // Fetch all now playing movies when the component initializes
-    this.getPopularMovies()
+    this.getPopularMovies(1)
 
     // Start the banner rotation
     setInterval(() => {
@@ -252,7 +257,7 @@ export class MovieComponent implements OnInit {
 
     // popular movies
     if (this.selectedCategory === 'popular') {
-      this.getPopularMovies();
+      this.getPopularMovies(1);
     }
 
     // Now playing movies
@@ -273,4 +278,16 @@ export class MovieComponent implements OnInit {
   }
 
 
+  // Pagination methods
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.getPopularMovies(this.currentPage + 1);
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.getPopularMovies(this.currentPage - 1);
+    }
+  }
 }

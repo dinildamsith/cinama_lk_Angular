@@ -118,4 +118,25 @@
 
     </div>
   </div>
+
+  <!-- Pagination Controls -->
+  <div class="flex justify-center items-center mt-8 space-x-4">
+    <button
+      class="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50"
+      (click)="prevPage()"
+      [disabled]="currentPage === 1"
+    >
+      Prev
+    </button>
+    <span class="text-lg text-gray-800 dark:text-gray-200">
+      Page {{ currentPage }} of {{ totalPages }}
+    </span>
+    <button
+      class="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50"
+      (click)="nextPage()"
+      [disabled]="currentPage === totalPages"
+    >
+      Next
+    </button>
+  </div>
 </div>
