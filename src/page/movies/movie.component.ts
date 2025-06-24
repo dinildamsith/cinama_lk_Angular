@@ -156,10 +156,10 @@ export class MovieComponent implements OnInit {
   }
 
   // Function to fetch upcoming movies
-  getUpcomingMovies() {
+  getUpcomingMovies(pageCount: number) {
     this.loading = true;
 
-    this.movieServices.getUpcomingMovies().subscribe({
+    this.movieServices.getUpcomingMovies(pageCount).subscribe({
       next: (res: any) => {
         console.log(res);
         this.movies = res.results.map((movie: any) => ({
@@ -170,6 +170,8 @@ export class MovieComponent implements OnInit {
           rating: movie.vote_average,
           adult: movie.adult,
         }));
+        this.currentPage = pageCount;
+        this.totalPages = res.total_pages;
         this.loading = false; // ✅ move here
       },
       error: (err) => {
@@ -276,7 +278,7 @@ export class MovieComponent implements OnInit {
 
     // Upcoming movies
     if (this.selectedCategory === 'upcoming') {
-      this.getUpcomingMovies();
+      this.getUpcomingMovies(1);
     }
 
   }
@@ -286,12 +288,18 @@ export class MovieComponent implements OnInit {
   nextPage() {
     if (this.currentPage < this.totalPages) {
       this.getPopularMovies(this.currentPage + 1);
+      this.getAllNowPlayingMovies(this.currentPage + 1);
+      this.getTopRatedMovies(this.currentPage + 1);
+      this.getUpcomingMovies(this.currentPage + 1);
     }
   }
 
   prevPage() {
     if (this.currentPage > 1) {
-      this.getPopularMovies(this.currentPage - 1);
+      this.getPopularMovies(this.currentPage + 1);
+      this.getAllNowPlayingMovies(this.currentPage + 1);
+      this.getTopRatedMovies(this.currentPage + 1);
+      this.getUpcomingMovies(this.currentPage + 1);
     }
   }
 }

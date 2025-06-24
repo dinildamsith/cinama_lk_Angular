@@ -29,8 +29,8 @@ export class MovieServices{
     return this.httpServices.get(TOP_RATED_ALL_MOVIES_GET_URL + pageCount, true);
   }
 
-  getUpcomingMovies(){
-    return this.httpServices.get(UPCOMING_ALL_MOVIES_GET_URL + 1, true);
+  getUpcomingMovies(pageCount: number) {
+    return this.httpServices.get(UPCOMING_ALL_MOVIES_GET_URL + pageCount, true);
   }
 
 
