@@ -78,10 +78,10 @@ export class MovieComponent implements OnInit {
   }
 
   // Function to fetch all now playing movies
-  getAllNowPlayingMovies() {
+  getAllNowPlayingMovies(pageCount: number = 1) {
     this.loading = true;
 
-    this.movieServices.getAllNowPlayingMovies().subscribe({
+    this.movieServices.getAllNowPlayingMovies(pageCount).subscribe({
       next: (res: any) => {
         console.log(res);
         this.movies = res.results.map((movie: any) => ({
@@ -92,6 +92,8 @@ export class MovieComponent implements OnInit {
           rating: movie.vote_average,
           adult: movie.adult,
         }));
+        this.currentPage = pageCount;
+        this.totalPages = res.total_pages;
         this.loading = false; // ✅ move here
       },
       error: (err) => {
@@ -262,7 +264,7 @@ export class MovieComponent implements OnInit {
 
     // Now playing movies
     if (this.selectedCategory === 'now_playing') {
-      this.getAllNowPlayingMovies();
+      this.getAllNowPlayingMovies(1);
     }
 
     // Top rated movies

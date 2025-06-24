@@ -21,8 +21,8 @@ export class MovieServices{
     return this.httpServices.get(POPULAR_ALL_MOVIES_GET_URL + pageCount, true);
   }
 
-  getAllNowPlayingMovies(){
-    return this.httpServices.get(NOW_PLAYING_ALL_MOVIES_GET_URL + 1, true);
+  getAllNowPlayingMovies(pageCount: number) {
+    return this.httpServices.get(NOW_PLAYING_ALL_MOVIES_GET_URL + pageCount, true);
   }
 
   getTopRatedMovies(){
