@@ -130,10 +130,10 @@ export class MovieComponent implements OnInit {
   }
 
   // Function to fetch top rated movies
-  getTopRatedMovies() {
+  getTopRatedMovies(pageCount: number ) {
     this.loading = true;
 
-    this.movieServices.getTopRatedMovies().subscribe({
+    this.movieServices.getTopRatedMovies(pageCount).subscribe({
       next: (res: any) => {
         console.log(res);
         this.movies = res.results.map((movie: any) => ({
@@ -144,6 +144,8 @@ export class MovieComponent implements OnInit {
           rating: movie.vote_average,
           adult: movie.adult,
         }));
+        this.currentPage = pageCount;
+        this.totalPages = res.total_pages;
         this.loading = false; // ✅ move here
       },
       error: (err) => {
@@ -269,7 +271,7 @@ export class MovieComponent implements OnInit {
 
     // Top rated movies
     if (this.selectedCategory === 'top_rated') {
-      this.getTopRatedMovies();
+      this.getTopRatedMovies(1);
     }
 
     // Upcoming movies

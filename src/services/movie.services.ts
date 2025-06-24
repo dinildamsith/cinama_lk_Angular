@@ -25,8 +25,8 @@ export class MovieServices{
     return this.httpServices.get(NOW_PLAYING_ALL_MOVIES_GET_URL + pageCount, true);
   }
 
-  getTopRatedMovies(){
-    return this.httpServices.get(TOP_RATED_ALL_MOVIES_GET_URL + 1, true);
+  getTopRatedMovies(pageCount: number) {
+    return this.httpServices.get(TOP_RATED_ALL_MOVIES_GET_URL + pageCount, true);
   }
 
   getUpcomingMovies(){
