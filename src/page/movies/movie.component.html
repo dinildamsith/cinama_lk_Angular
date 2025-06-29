@@ -58,12 +58,31 @@
         <hr>
 
         <div class="mb-4">
-          <label for="genre" class="block text-sm text-gray-700 dark:text-gray-300">Genre</label>
+          <label for="genre" class="block text-sm text-gray-700 dark:text-gray-300 mt-5">Genre</label>
           <select id="genre" (change)="setGenre($event)" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
             <option *ngFor="let genres of allGenres" [value]="genres.id">
               {{genres.name}}
             </option>
           </select>
+        </div>
+
+        <div class="mb-4">
+          <label for="genre" class="block text-sm text-gray-700 dark:text-gray-300">Adult</label>
+          <div class="flex gap-2 mb-3">
+            <button
+              (click)="filterByType('adult')"
+              [class]="selectedType === 'adult' ? activeChipStyle : chipStyle"
+            >
+              18+
+            </button>
+
+            <button
+              (click)="filterByType('non-adult')"
+              [class]="selectedType === 'non-adult' ? activeChipStyle : chipStyle"
+            >
+              Non 18+
+            </button>
+          </div>
         </div>
 
 <!--        <div class="mb-4">-->

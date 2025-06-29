@@ -41,6 +41,7 @@ export class MovieComponent implements OnInit {
   // search body
   filter : any = {
     genre: '',
+    adult: ''
   }
 
   loading: boolean = false;
@@ -187,6 +188,15 @@ export class MovieComponent implements OnInit {
     console.log('Selected genre:', this.filter.genre);
   }
 
+  // Filter movies by type (adult or non-adult)
+  chipStyle = 'px-3 py-1 rounded-full border border-gray-400 text-sm text-gray-700 dark:text-white';
+  activeChipStyle = 'px-3 py-1 rounded-full bg-blue-600 text-white text-sm';
+  selectedType: 'adult' | 'non-adult' | '' = '';
+  filterByType(type: 'adult' | 'non-adult') {
+    this.selectedType = type;
+    this.filter.adult = type === 'adult' ? 'true' : 'false';
+  }
+
   // serch handel
   searchMovie() {
     this.loading = true;
@@ -253,7 +263,6 @@ export class MovieComponent implements OnInit {
   }
 
 
-
   // Function to handle category change
   onCategoryChange(event: any) {
     // Get the selected category from the event
@@ -293,6 +302,7 @@ export class MovieComponent implements OnInit {
       this.getUpcomingMovies(this.currentPage + 1);
     }
   }
+
 
   prevPage() {
     if (this.currentPage > 1) {

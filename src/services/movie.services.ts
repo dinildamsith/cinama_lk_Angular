@@ -60,7 +60,7 @@ export class MovieServices{
   }
 
   searchMovies(filter: any) {
-    let url = MOVIES_SEARCH_GET_URL + `&with_genres=${filter.genre}&sort_by=popularity.desc&page=1`;
+    let url = MOVIES_SEARCH_GET_URL + `&with_genres=${filter.genre}&include_adult=${filter.adult}&sort_by=popularity.desc&page=1`;
     return this.httpServices.get(url, true);
   }
 
