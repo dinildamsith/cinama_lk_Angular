@@ -16,10 +16,10 @@ export const MOVIES_SEARCH_BY_KEYWORD_GET_URL = "search/movie?language=en-US"
 
 
 //-----------------------TV SHOWS-----------------------
-export const POPULAR_ALL_TV_SHOWS_GET_URL = "tv/popular?language=en-US&page=1"
-export const TOP_RATED_ALL_TV_SHOWS_GET_URL = "tv/top_rated?language=en-US&page=1"
-export const ON_THE_AIR_ALL_TV_SHOWS_GET_URL = "tv/on_the_air?language=en-US&page=1"
-export const AIRING_TODAY_ALL_TV_SHOWS_GET_URL = "tv/airing_today?language=en-US&page=1"
+export const POPULAR_ALL_TV_SHOWS_GET_URL = "tv/popular?language=en-US&page="
+export const TOP_RATED_ALL_TV_SHOWS_GET_URL = "tv/top_rated?language=en-US&page="
+export const ON_THE_AIR_ALL_TV_SHOWS_GET_URL = "tv/on_the_air?language=en-US&page="
+export const AIRING_TODAY_ALL_TV_SHOWS_GET_URL = "tv/airing_today?language=en-US&page="
 
 export const SELECTED_TV_SHOW_DETAILS_GET_URL = "tv/"
 export const TV_SERIES_CREDITS_GET_URL = "tv/"

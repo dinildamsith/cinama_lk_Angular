@@ -17,20 +17,20 @@ export class TvShowsService {
 
   constructor(private httpServices: HttpService) {}
 
-  getPopularTvShows(){
-    return this.httpServices.get(POPULAR_ALL_TV_SHOWS_GET_URL, true);
+  getPopularTvShows(pageCount: any){
+    return this.httpServices.get(POPULAR_ALL_TV_SHOWS_GET_URL + pageCount, true);
   }
 
-  getTopRatedTvShows(){
-    return this.httpServices.get(TOP_RATED_ALL_TV_SHOWS_GET_URL, true);
+  getTopRatedTvShows(pageCount: any) {
+    return this.httpServices.get(TOP_RATED_ALL_TV_SHOWS_GET_URL + pageCount, true);
   }
 
-  getOnTheAirTvShows(){
-    return this.httpServices.get(ON_THE_AIR_ALL_TV_SHOWS_GET_URL, true);
+  getOnTheAirTvShows(pageCount: any){
+    return this.httpServices.get(ON_THE_AIR_ALL_TV_SHOWS_GET_URL + pageCount, true);
   }
 
-  getAiringTodayTvShows() {
-    return this.httpServices.get(AIRING_TODAY_ALL_TV_SHOWS_GET_URL, true);
+  getAiringTodayTvShows(pageCount: any) {
+    return this.httpServices.get(AIRING_TODAY_ALL_TV_SHOWS_GET_URL + pageCount, true);
   }
 
   getTvShowDetails(id: number) {

@@ -42,6 +42,10 @@ export class TvShowsComponent implements OnInit {
 
   filterExpanded = false;
 
+  currentPage = 1;
+  totalPages = 1;
+
+
   toggleFilter() {
     this.filterExpanded = !this.filterExpanded;
   }
@@ -123,11 +127,13 @@ export class TvShowsComponent implements OnInit {
   }
 
   //------------get all popular tv shows
-  getAllPopularTvShows() {
+  getAllPopularTvShows(pageCount: any) {
     this.loading = true;
-    this.tvShowsServices.getPopularTvShows().subscribe({
+    this.tvShowsServices.getPopularTvShows(pageCount).subscribe({
       next: (res: any) => {
         console.log(res);
+        this.currentPage = pageCount;
+        this.totalPages = res.total_pages;
         this.allTvSeries = res.results.map((movie: any) => ({
           id:movie.id,
           title: movie.name,
@@ -146,9 +152,9 @@ export class TvShowsComponent implements OnInit {
   }
 
   //------------get all top rated tv shows
-  getAllTopRatedTvShows() {
+  getAllTopRatedTvShows(pageCount: any) {
     this.loading = true;
-    this.tvShowsServices.getTopRatedTvShows().subscribe({
+    this.tvShowsServices.getTopRatedTvShows(pageCount).subscribe({
       next: (res: any) => {
         console.log(res);
         this.allTvSeries = res.results.map((movie: any) => ({
@@ -159,6 +165,8 @@ export class TvShowsComponent implements OnInit {
           rating: movie.vote_average,
           adult: movie.adult,
         }));
+        this.currentPage = pageCount;
+        this.totalPages = res.total_pages;
         this.loading = false; // ✅ move here
       },
       error: (err) => {
@@ -169,9 +177,9 @@ export class TvShowsComponent implements OnInit {
   }
 
   //------------get all on the air tv shows
-  getAllOnTheAirTvShows() {
+  getAllOnTheAirTvShows(pageCount: any) {
     this.loading = true;
-    this.tvShowsServices.getOnTheAirTvShows().subscribe({
+    this.tvShowsServices.getOnTheAirTvShows(pageCount).subscribe({
       next: (res: any) => {
         console.log(res);
         this.allTvSeries = res.results.map((movie: any) => ({
@@ -182,6 +190,8 @@ export class TvShowsComponent implements OnInit {
           rating: movie.vote_average,
           adult: movie.adult,
         }));
+        this.currentPage = pageCount;
+        this.totalPages = res.total_pages;
         this.loading = false; // ✅ move here
       },
       error: (err) => {
@@ -192,9 +202,9 @@ export class TvShowsComponent implements OnInit {
   }
 
   //------------get all airing today tv shows
-  getAllAiringTodayTvShows() {
+  getAllAiringTodayTvShows(pageCount: any) {
     this.loading = true;
-    this.tvShowsServices.getAiringTodayTvShows().subscribe({
+    this.tvShowsServices.getAiringTodayTvShows(pageCount).subscribe({
       next: (res: any) => {
         console.log(res);
         this.allTvSeries = res.results.map((movie: any) => ({
@@ -205,6 +215,8 @@ export class TvShowsComponent implements OnInit {
           rating: movie.vote_average,
           adult: movie.adult,
         }));
+        this.currentPage = pageCount;
+        this.totalPages = res.total_pages;
         this.loading = false; // ✅ move here
       },
       error: (err) => {
@@ -216,7 +228,7 @@ export class TvShowsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllGenres();
-    this.getAllPopularTvShows()
+    this.getAllPopularTvShows(1)
     setInterval(() => {
       this.currentBannerIndex = (this.currentBannerIndex + 1) % this.banners.length;
     }, 3000); // Change every 3 seconds
@@ -226,14 +238,35 @@ export class TvShowsComponent implements OnInit {
     const selectedCategory = event.target.value;
 
     if (selectedCategory === 'popular') {
-      this.getAllPopularTvShows();
+      this.getAllPopularTvShows(1);
     } else if (selectedCategory === 'top_rated') {
-      this.getAllTopRatedTvShows();
+      this.getAllTopRatedTvShows(1);
     } else if (selectedCategory === 'on_the_air') {
-      this.getAllOnTheAirTvShows();
+      this.getAllOnTheAirTvShows(1);
     } else if (selectedCategory === 'airing_today') {
-      this.getAllAiringTodayTvShows();
+      this.getAllAiringTodayTvShows(1);
     }
 
+  }
+
+
+  // Pagination methods
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.getAllPopularTvShows(this.currentPage + 1);
+      this.getAllTopRatedTvShows(this.currentPage + 1);
+      this.getAllOnTheAirTvShows(this.currentPage + 1);
+      this.getAllAiringTodayTvShows(this.currentPage + 1);
+    }
+  }
+
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.getAllPopularTvShows(this.currentPage - 1);
+      this.getAllTopRatedTvShows(this.currentPage - 1);
+      this.getAllOnTheAirTvShows(this.currentPage - 1);
+      this.getAllAiringTodayTvShows(this.currentPage - 1);
+    }
   }
 }
