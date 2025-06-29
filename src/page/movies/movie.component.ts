@@ -79,7 +79,7 @@ export class MovieComponent implements OnInit {
   }
 
   // Function to fetch all now playing movies
-  getAllNowPlayingMovies(pageCount: number = 1) {
+  getAllNowPlayingMovies(pageCount: number) {
     this.loading = true;
 
     this.movieServices.getAllNowPlayingMovies(pageCount).subscribe({
