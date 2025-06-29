@@ -24,6 +24,7 @@ export class TvShowsComponent implements OnInit {
   //----filter
   filter: any = {
     genre: '',
+    adult: ''
   }
 
   //-------------states
@@ -63,6 +64,15 @@ export class TvShowsComponent implements OnInit {
         this.loading = false;
       }
     });
+  }
+
+  // Filter movies by type (adult or non-adult)
+  chipStyle = 'px-3 py-1 rounded-full border border-gray-400 text-sm text-gray-700 dark:text-white';
+  activeChipStyle = 'px-3 py-1 rounded-full bg-blue-600 text-white text-sm';
+  selectedType: 'adult' | 'non-adult' | '' = '';
+  filterByType(type: 'adult' | 'non-adult') {
+    this.selectedType = type;
+    this.filter.adult = type === 'adult' ? 'true' : 'false';
   }
 
   //----------tv show search
