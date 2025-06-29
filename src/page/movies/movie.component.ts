@@ -306,10 +306,10 @@ export class MovieComponent implements OnInit {
 
   prevPage() {
     if (this.currentPage > 1) {
-      this.getPopularMovies(this.currentPage + 1);
-      this.getAllNowPlayingMovies(this.currentPage + 1);
-      this.getTopRatedMovies(this.currentPage + 1);
-      this.getUpcomingMovies(this.currentPage + 1);
+      this.getPopularMovies(this.currentPage - 1);
+      this.getAllNowPlayingMovies(this.currentPage - 1);
+      this.getTopRatedMovies(this.currentPage - 1);
+      this.getUpcomingMovies(this.currentPage - 1);
     }
   }
 }
