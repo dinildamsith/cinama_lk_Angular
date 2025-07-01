@@ -11,6 +11,6 @@ import {NgForOf} from '@angular/common';
 })
 export class FooterComponent {
 
-  navItems = ['Home', 'Movies', 'Trending', 'Add Movie'];
+  navItems = ['Movies', 'Tv Shows', 'People'];
   protected readonly Date = Date;
 }
