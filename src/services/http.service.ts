@@ -17,7 +17,7 @@ export class HttpService {
     let headers = new HttpHeaders();
     if (auth) {
       const token = environment.tmdbToken;
-      console.log('Token:', token);
+      // console.log('Token:', token);
       if (token) {
         headers = headers.set('Authorization', `Bearer ${token}`);
       }
