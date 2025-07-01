@@ -41,7 +41,8 @@ export class MovieComponent implements OnInit {
   // search body
   filter : any = {
     genre: '',
-    adult: ''
+    adult: '',
+    vote: 0
   }
 
   loading: boolean = false;
@@ -56,8 +57,18 @@ export class MovieComponent implements OnInit {
   currentPage = 1;
   totalPages = 1;
 
+  selectedRate: number = 1;
+
   toggleFilter() {
     this.filterExpanded = !this.filterExpanded;
+  }
+
+
+  onRateChange(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    this.selectedRate = parseFloat(value);
+    this.filter.vote = this.selectedRate; // Update the filter with the selected rate
+    console.log('Selected rate:', value);
   }
 
 
